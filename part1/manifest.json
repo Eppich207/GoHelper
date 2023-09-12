@@ -2,5 +2,12 @@
     "name": "2 minute timer",
     "version": "0.0.1",
     "manifest_version": 3,
-    "description": "A 2 minute timer so you dont forget to get someone off hold."
+    "description": "A 2 minute timer so you dont forget to get someone off hold.",
+    "icon": {
+
+        "16": "icons/hourglass16x16.png"
+    },
+    "action": {
+        "default_popup": "popup/popup.html"
+    }
 }
