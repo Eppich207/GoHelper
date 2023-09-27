@@ -4,23 +4,54 @@
         <meta charset="utf-8" name="viewport">
         <style>
             body {
-                width: 500px;
+                width: 400px;
             }
-            button {
-                background-color: #083a70;
-                border: none;
-                color: white;
-                padding: 10px 21px;
-                margin: 0px 5px;
-                text-align: center;
-                font-size: 14px;
-                font-weight: bold;
+            .button-normal {
+            background-color: #083a70;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            margin: 0px 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
             }
+            .button-inverted {
+            background-color: rgb(255, 193, 100);
+            border: none;
+            color: #083a70;
+            padding: 10px 15px;
+            margin: 0px 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            }
+            .textbox {
+            margin: 5px 5px;
+            border: 2px 2px;
+            background-color: rgb(216, 216, 216);
+            border: none;
+            width: 300px;
+            height: 400px;
+            resize: none;
+            }
+
+
         </style>
     </head>
     <body>
-        <h2>Start a timer</h2>
-            <button id="StartCountdown">Paste MDS</button><script src="popup.js"></script>
-            <button id="StartCountdown1">Paste MDS</button><script src="popup.js"></script>
+       <!-- <h2>Start a timer</h2>
+            <button class="button-inverted" id="StartCountdown">Paste MDS</button>
+            <button class="button-normal" id="StartCountdown1">Paste MDS1</button><script src="popup.js"></script>
+            <div class="container"> <input type="text" id="textEditor" value="Prewritten text"></div>-->
+
+            <h2>Start a timer</h2>
+            <button class="button-inverted" id="StartCountdown">Copy Text</button>
+            <button class="button-normal" id="StartCountdown1">Copy Text 1</button>
+            <script src="popup.js"></script>
+            <div class="container">
+                <textarea class="textbox" id="textEditor" rows="5" cols="50" spellcheck="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</textarea>
+           <!-- <input class="textbox" type="text" id="textEditor" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit"<br>"sed do eiusmod tempor incididunt ut labore et dolore"<br>" magna lit anim id est laborum">
+       --> </div>
     </body>
 </html>
