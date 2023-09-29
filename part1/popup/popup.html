@@ -9,13 +9,26 @@
             .button-normal {
             background-color: #083a70;
             border: none;
-            color: white;
+            color: rgb(230, 212, 196);
             padding: 10px 15px;
             margin: 0px 5px;
             text-align: center;
             font-size: 14px;
             font-weight: bold;
             }
+            .button-normal:hover {
+            background-color: #09509b;
+            border: none;
+            color: rgba(208, 177, 134, 0.936);
+            padding: 10px 15px;
+            margin: 0px 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            }
+            
+
+            
             .button-inverted {
             background-color: rgb(255, 193, 100);
             border: none;
@@ -26,6 +39,18 @@
             font-size: 14px;
             font-weight: bold;
             }
+
+            .button-inverted:hover {
+            background-color: rgb(255, 160, 70);
+            border: none;
+            color: #04203e;
+            padding: 10px 15px;
+            margin: 0px 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            }
+
             .textbox {
             margin: 5px 5px;
             border: 2px 2px;
@@ -43,7 +68,6 @@
             <h2>Start a timer</h2>
             <button class="button-inverted" id="StartCountdown">Copy Text</button>
             <button class="button-normal" id="StartCountdown1">Copy Text 1</button>
-            <button id="overlayButton">Toggle Overlay</button>
             <script src="popup.js"></script>
             <div class="container">
                 <textarea class="textbox" id="textEditor" rows="5" cols="50" spellcheck="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</textarea>
