@@ -54,23 +54,53 @@
             .textbox {
             margin: 5px 5px;
             border: 2px 2px;
-            background-color: rgb(216, 216, 216);
-            border: none;
+            background-color: rgb(236, 236, 236);
+            border-radius: 4px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #083a70;
             width: 300px;
             height: 400px;
             resize: none;
             }
 
+            .background {
+            background-color: rgb(224, 227, 234);
+            }
+            
 
         </style>
     </head>
-    <body>
-            <h2>Start a timer</h2>
-            <button class="button-inverted" id="StartCountdown">Copy Text</button>
-            <button class="button-normal" id="StartCountdown1">Copy Text 1</button>
+    <body class="background">
+            <h2 id="version">Agent Assist Version: </h2>
+            <button class="button-inverted" id="MSD">Copy text</button>
+            <button class="button-normal" id="StartCountdown1">Copy another text</button>
             <script src="popup.js"></script>
             <div class="container">
-                <textarea class="textbox" id="textEditor" rows="5" cols="50" spellcheck="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</textarea>
+                <textarea class="textbox" id="textEditor" rows="5" cols="50" spellcheck="false">
+Lorem ipsum dolor sit amet, consectetur 
+==========================
+
+========================
+
+
+et dolore magna aliqua. Ut enim ad minim 
+
+
+veniam, quis nostrud exercitation 
+
+
+ullamco laboris nisi ut 
+
+
+========================
+
+
+aliquip ex ea commodo consequat.
+========================
+
+
+                </textarea>
            </div>
     </body>
 </html>
