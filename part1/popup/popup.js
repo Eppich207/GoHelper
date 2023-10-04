@@ -22,7 +22,7 @@ const StartCountdown1 = document.getElementById("StartCountdown1");
 if (StartCountdown1) {
     // On click event for the standard copy
     StartCountdown1.onclick = function() {
-        var text = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; // Best regards, Rick
+        var text = "Buenas dias, mi nombre es Maarten"; // Best regards, Rick
         // Console.log
         navigator.clipboard.writeText(text).then(function() {
            console.log('Async: Copying to clipboard was successful');
@@ -32,6 +32,26 @@ if (StartCountdown1) {
         });
     };
 }
+
+window.addEventListener('DOMContentLoaded', (event) => {
+
+    const textEditor = document.getElementById("textEditor");
+
+    const MDS = document.getElementById("MDS");
+    if (MDS) {
+        MDS.addEventListener('click', function() {
+            textEditor.value = "Pain itself";
+        });
+    }
+
+    const COP = document.getElementById("COP");
+    if (COP) {
+        COP.addEventListener('click', function() {
+            textEditor.value = "Another text";
+        });
+    }
+
+});
 
 // Grabbing the current version from the manifest
 document.addEventListener('DOMContentLoaded', function () {

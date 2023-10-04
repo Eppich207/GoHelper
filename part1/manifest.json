@@ -1,6 +1,6 @@
 {
   "name": "2 minute timer",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "manifest_version": 3,
   "description": "A 2 minute timer so you dont forget to get someone off hold.",
   "permissions": ["activeTab", "scripting"],
