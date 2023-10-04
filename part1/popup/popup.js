@@ -1,4 +1,27 @@
-
+function fetchWikiTitle(retries = 3) {
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        const activeTab = tabs[0];
+        chrome.scripting.executeScript({
+            target: {tabId: activeTab.id},
+            files: ['popup/content.js']
+        }, () => {
+            chrome.tabs.sendMessage(activeTab.id, {action: "getWikiTitle"}, function(response) {
+                if (chrome.runtime.lastError) {
+                    if (retries > 0) {
+                        setTimeout(() => fetchWikiTitle(retries - 1), 500);
+                    } else {
+                        console.error('Failed to fetch Wikipedia title after multiple retries.');
+                    }
+                } else if (response && response.title) {
+                    const textEditor = document.getElementById("textEditor");
+                    if (textEditor) {
+                        textEditor.value = textEditor.value.replace('[WIKI_TITLE]', response.title);
+                    }
+                }
+            });
+        });
+    });
+}
 
 // Grabbing the textbox area and copying it
 const MSD = document.getElementById("MSD");
@@ -40,7 +63,29 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const MDS = document.getElementById("MDS");
     if (MDS) {
         MDS.addEventListener('click', function() {
-            textEditor.value = "Pain itself";
+            let MSDstr =`
+Lorem ipsum dolor sit amet, consectetur 
+==========================
+            
+========================
+a
+
+et dolore magna aliqua. Ut enim ad minim 
+
+
+veniam, quis nostrud exercitation 
+
+
+ ullamco laboris nisi ut 
+
+
+========================
+
+
+aliquip ex ea commodo consequat.
+========================
+            `;
+            textEditor.value = MSDstr;
         });
     }
 
@@ -60,4 +105,23 @@ document.addEventListener('DOMContentLoaded', function () {
     let version = manifest.version;
     //making sure that you can have text infront of it
     document.getElementById("version").textContent += version;
+});
+
+chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    const activeTab = tabs[0];
+    chrome.tabs.sendMessage(activeTab.id, {action: "getWikiTitle"}, function(response) {
+        if (response && response.title) {
+            const textEditor = document.getElementById("textEditor");
+            if (textEditor) {
+                // Replace the placeholder with the actual title
+                textEditor.value = textEditor.value.replace('[WIKI_TITLE]', response.title);
+            }
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    fetchWikiTitle();
+    
+    
 });
