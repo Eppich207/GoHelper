@@ -109,12 +109,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     const activeTab = tabs[0];
-    chrome.tabs.sendMessage(activeTab.id, {action: "getWikiTitle"}, function(response) {
-        if (response && response.title) {
-            const textEditor = document.getElementById("textEditor");
-            if (textEditor) {
-                // Replace the placeholder with the actual title
+    chrome.tabs.sendMessage(activeTab.id, {action: "getWikiData"}, function(response) {
+        const textEditor = document.getElementById("textEditor");
+        if (textEditor) {
+            // Replace the title placeholder
+            if (response.title) {
                 textEditor.value = textEditor.value.replace('[WIKI_TITLE]', response.title);
+            }
+
+            // Replace the age placeholder
+            if (response.age) {
+                textEditor.value = textEditor.value.replace('[Age]', response.age);
             }
         }
     });

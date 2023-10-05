@@ -1,6 +1,6 @@
 {
   "name": "2 minute timer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "manifest_version": 3,
   "description": "A 2 minute timer so you dont forget to get someone off hold.",
   "permissions": ["activeTab", "scripting","<all_urls>","tabs","storage","clipboardWrite","clipboardRead"],
