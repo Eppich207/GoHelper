@@ -41,6 +41,7 @@ if (MSD) {
 }
 
 
+
 const StartCountdown1 = document.getElementById("StartCountdown1");
 if (StartCountdown1) {
     // On click event for the standard copy
@@ -66,7 +67,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             let MSDstr =`
 Lorem ipsum dolor sit amet, consectetur 
 ==========================
-            
+          
 ========================
 a
 
