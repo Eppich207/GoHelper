@@ -93,9 +93,25 @@ aliquip ex ea commodo consequat.
     const COP = document.getElementById("COP");
     if (COP) {
         COP.addEventListener('click', function() {
-            textEditor.value = "Another text";
+            textEditor.value = "Hello (Name), Im (Agent)...";
         });
     }
+
+    const CCL = document.getElementById("CCL");
+    if (CCL) {
+        CCL.addEventListener('click', function() {
+            textEditor.value = "Im closing this now";
+        });
+    }
+
+    const FUP = document.getElementById("FUP");
+    if (FUP) {
+        FUP.addEventListener('click', function() {
+            textEditor.value = "FUP strike - added [Date]";
+        });
+    }
+
+
 
 });
 
