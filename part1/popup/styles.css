@@ -4,6 +4,7 @@ body {
 }
 
 
+
 .button-normal {
 background-color: #09509b;
 border: none;
@@ -61,7 +62,7 @@ border-style: solid;
 border-width: 1px;
 border-color: #083a70;
 width: 300px;
-height: 400px;
+height: 100px;
 resize: none;
 }
 
@@ -87,4 +88,8 @@ margin: 4px;
 .header {
 width: 300px;
 display: inline;
+}
+
+.headerdiv {
+    margin-bottom: 30px;
 }
