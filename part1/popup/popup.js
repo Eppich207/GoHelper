@@ -25,6 +25,7 @@ function fetchWikiTitle(retries = 3) {
 
 // Grabbing the textbox area and copying it
 const MSD = document.getElementById("MSD");
+const CurrentDate = new Date(MSD.getFullYear(), MSD.getMonth());
 if (MSD) {
     // On click event for MSD
     MSD.onclick = function() {
@@ -65,27 +66,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     if (MDS) {
         MDS.addEventListener('click', function() {
             let MSDstr =`
-Lorem ipsum dolor sit amet, consectetur 
-==========================
-          
-========================
-a
-
-et dolore magna aliqua. Ut enim ad minim 
-
-
-veniam, quis nostrud exercitation 
-
-
- ullamco laboris nisi ut 
-
-
-========================
-
-
-aliquip ex ea commodo consequat.
-========================
-            `;
+FUP1 - No response - 
+            ` + CurrentDate;
             textEditor.value = MSDstr;
         });
     }
