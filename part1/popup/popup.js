@@ -64,9 +64,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const MDS = document.getElementById("MDS");
     if (MDS) {
         MDS.addEventListener('click', function() {
-            let MSDstr =`
-FUP1 - No response - 
-            ` + CurrentDate;
+            const dateObj = new Date;
+            let MSDstr =` FUP1 - No response - 
+            ` + dateObj.toDateString();
             textEditor.value = MSDstr;
         });
     }
@@ -130,4 +130,11 @@ document.addEventListener('DOMContentLoaded', function () {
     fetchWikiTitle();
     
     
+});
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById('settings').addEventListener('click', function() {
+        window.open('settings.html', '_blank')
+        
+    });
 });
