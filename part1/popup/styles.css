@@ -34,7 +34,7 @@ background-color: rgb(255, 193, 100);
 border: none;
 color: #704508;
 padding: 10px 15px;
-margin: 0px 5px;
+margin: 5px 5px;
 text-align: center;
 font-size: 14px;
 font-weight: bold;
@@ -46,7 +46,7 @@ background-color: rgb(255, 160, 70);
 border: none;
 color: #3e2004;
 padding: 10px 15px;
-margin: 0px 5px;
+margin: 5px 5px;
 text-align: center;
 font-size: 14px;
 font-weight: bold;
@@ -93,3 +93,26 @@ display: inline;
 .headerdiv {
     margin-bottom: 10px;
 }
+
+.paragraphHeader {
+    width: 100px;
+    margin: 0;
+}
+
+#narrow {
+
+    width:  320px;
+
+}
+
+#wide {
+
+    flex: 1;
+
+}
+
+#flexing {
+
+    display: flex;
+}
+

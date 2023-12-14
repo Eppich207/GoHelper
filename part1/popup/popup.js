@@ -23,39 +23,7 @@ function fetchWikiTitle(retries = 3) {
     });
 }
 
-// Grabbing the textbox area and copying it
-const MSD = document.getElementById("MSD");
-if (MSD) {
-    // On click event for MSD
-    MSD.onclick = function() {
-        const textEditor = document.getElementById("textEditor");
-        const text = textEditor.value; 
-        // Console.log
-        navigator.clipboard.writeText(text).then(function() {
-            console.log('Async:Copied text');
-        }, function(err) {
-            // Error flow
-            console.error('Async: Could not copy text: ', err);
-        });
-    };
-}
 
-
-
-const StartCountdown1 = document.getElementById("StartCountdown1");
-if (StartCountdown1) {
-    // On click event for the standard copy
-    StartCountdown1.onclick = function() {
-        var text = "Buenas dias, mi nombre es Maarten"; // Best regards, Rick
-        // Console.log
-        navigator.clipboard.writeText(text).then(function() {
-           console.log('Async: Copying to clipboard was successful');
-        }, function(err) {
-            // Error flow
-            console.error(err);
-        });
-    };
-}
 
 window.addEventListener('DOMContentLoaded', (event) => {
 
@@ -65,8 +33,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     if (MDS) {
         MDS.addEventListener('click', function() {
             const dateObj = new Date;
-            let MSDstr =` FUP1 - No response - 
-            ` + dateObj.toDateString();
+            let MSDstr =`FUP1 - No response -` + dateObj.toDateString();
             textEditor.value = MSDstr;
         });
     }
@@ -96,6 +63,41 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
 
+
+    // Grabbing the textbox area and copying it
+const YWA = document.getElementById("YWA");
+if (YWA) {
+    // On click event for MSD
+    YWA.onclick = function() {
+        console.log('Async:1');
+        const textEditor = document.getElementById("textEditor");
+        const text = textEditor.value; 
+        // Console.log
+        navigator.clipboard.writeText(text).then(function() {
+            console.log('Async:Copied text');
+        }, function(err) {
+            // Error flow
+            console.error('Async: Could not copy text: ', err);
+        });
+    };
+}
+
+
+
+const StartCountdown1 = document.getElementById("StartCountdown1");
+if (StartCountdown1) {
+    // On click event for the standard copy
+    StartCountdown1.onclick = function() {
+        var text = "Buenas dias, mi nombre es Maarten"; // Best regards, Rick
+        // Console.log
+        navigator.clipboard.writeText(text).then(function() {
+           console.log('Async: Copying to clipboard was successful');
+        }, function(err) {
+            // Error flow
+            console.error(err);
+        });
+    };
+}
 
 });
 
