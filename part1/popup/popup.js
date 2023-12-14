@@ -25,7 +25,6 @@ function fetchWikiTitle(retries = 3) {
 
 // Grabbing the textbox area and copying it
 const MSD = document.getElementById("MSD");
-const CurrentDate = new Date(MSD.getFullYear(), MSD.getMonth());
 if (MSD) {
     // On click event for MSD
     MSD.onclick = function() {
@@ -86,10 +85,13 @@ FUP1 - No response -
         });
     }
 
+
     const FUP = document.getElementById("FUP");
+    
     if (FUP) {
         FUP.addEventListener('click', function() {
-            textEditor.value = "FUP strike - added [Date]";
+            const dateObj = new Date;
+            textEditor.value = "FUP strike - added " + dateObj.toDateString();
         });
     }
 
@@ -103,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let manifest = chrome.runtime.getManifest();
     let version = manifest.version;
     //making sure that you can have text infront of it
-    document.getElementById("version").textContent += version;
+    document.getElementById("versionmanifest").textContent += version;
 });
 
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {

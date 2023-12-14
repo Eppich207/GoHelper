@@ -1,31 +1,40 @@
 <!DOCTYPE html>
 <html>
+
+
     <head>
         <meta charset="utf-8" name="viewport">
         <link rel="stylesheet" type="text/css" href="styles.css">
     </head>
+
+
     <body class="background">
 
-            <div class="headerdiv"> 
-            <h2 class="header">Agent Assist</h2>
+        <script src="popup.js"></script>
+
+        <div class="headerdiv"> 
+
+            <h2 class="header"> Agent Assist</h2>
             <button class="settings" id="settings" onclick="window.location='settings.html'"></button>
-            <p id="version" class="paragraphHeader">Version: </p>
-            </div>
-            <script src="popup.js"></script>
-            <div class="container">
+            <p id="versionmanifest" class="paragraphHeader"> Version: </p>
+
+        </div>
+
+        <div>
+            <button class="button-inverted" id="MSD">Copy text</button>
+            <button class="button-normal" id="StartCountdown1"></button>
+        </div>
+        <section>
+            <button class="button-inverted" id="MDS">MDS</button>
+            <button class="button-normal" id="COP">OPEN</button>
+            <button class="button-normal" id="CCL">CLOSE</button>
+            <button class="button-inverted" id="FUP">FUP</button>
+        </section>
+            
+        <div class="container">
+
                 <textarea class="textbox" id="textEditor" rows="5" cols="50" spellcheck="false">
 Welcome to agent assist
-==========================
-
-Click the button on the left <<
-To copy the text in this box
-
-Click the button on the right >> 
-To copy a sample text
-
-Click any buttons below \/ \/ \/
-to prefill this area with a text
-
 ========================
 
 This text will automatically fill
@@ -36,18 +45,9 @@ if you open this on wikipedia
 Title: [WIKI_TITLE]
 Age: [Age]
 ========================
-                </textarea>
-            </div>
-            <div>
-            <button class="button-inverted" id="MSD">Copy text</button>
-            <button class="button-normal" id="StartCountdown1"></button>
-            </div>
-            <div>
-            <button class="button-inverted" id="MDS">MDS</button>
-            <button class="button-normal" id="COP">OPEN</button>
-            <button class="button-normal" id="CCL">CLOSE</button>
-            <button class="button-inverted" id="FUP">FUP</button>
-            
-            </div>
+                </textarea>   
+        </div>
+
+        
     </body>
 </html>
