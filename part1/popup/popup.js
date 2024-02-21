@@ -32,8 +32,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const MDS = document.getElementById("MDS");
     if (MDS) {
         MDS.addEventListener('click', function() {
-            const dateObj = new Date;
-            let MSDstr =`FUP1 - No response -` + dateObj.toDateString();
+            let MSDstr ="Hi , ik ben Maarten van EY technology, ik zie een open ticket over . Hoe is de stand van zaken?";
             textEditor.value = MSDstr;
         });
     }
@@ -48,17 +47,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const CCL = document.getElementById("CCL");
     if (CCL) {
         CCL.addEventListener('click', function() {
-            textEditor.value = "Im closing this now";
+            textEditor.value = "Als je het niet erg vind, sluit ik nu dan je ticket. Mocht je nog wat tijd over hebben, kan je dan feedback geven in de mail de nu je kant op komt?";
         });
     }
 
+    const AWY = document.getElementById("AWY");
+    if (AWY) {
+        AWY.addEventListener('click', function() {
+            textEditor.value = "Ik zie dat je momenteel niet beschikbaar bent. Wanneer heb je tijd om hier naar te kijken? Als ik geen antwoord ontvang kom ik later vandaag bij je terug";
+        });
+    }
 
     const FUP = document.getElementById("FUP");
     
     if (FUP) {
         FUP.addEventListener('click', function() {
             const dateObj = new Date;
-            textEditor.value = "FUP strike - added " + dateObj.toDateString();
+            textEditor.value = "FUP " + dateObj.toDateString();
         });
     }
 
@@ -88,7 +93,7 @@ const StartCountdown1 = document.getElementById("StartCountdown1");
 if (StartCountdown1) {
     // On click event for the standard copy
     StartCountdown1.onclick = function() {
-        var text = "Buenas dias, mi nombre es Maarten"; // Best regards, Rick
+        var text = "Buenas dias, mi nombre es Maarten"; 
         // Console.log
         navigator.clipboard.writeText(text).then(function() {
            console.log('Async: Copying to clipboard was successful');
