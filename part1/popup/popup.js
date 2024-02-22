@@ -1,3 +1,5 @@
+
+
 function fetchWikiTitle(retries = 3) {
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         const activeTab = tabs[0];
@@ -23,60 +25,7 @@ function fetchWikiTitle(retries = 3) {
     });
 }
 
-
-
-window.addEventListener('DOMContentLoaded', (event) => {
-
-    const textEditor = document.getElementById("textEditor");
-
-    // INT Button
-    const MDS = document.getElementById("MDS");
-    if (MDS) {
-        MDS.addEventListener('click', function() {
-            let MSDstr ="Hi , ik ben Maarten van EY technology, ik zie een open ticket over . Hoe is de stand van zaken?";
-            textEditor.value = MSDstr;
-        });
-    }
-
-    //OPN Button
-    const COP = document.getElementById("COP");
-    if (COP) {
-        COP.addEventListener('click', function() {
-            textEditor.value = "Hello (Name), Im (Agent)...";
-        });
-    }
-
-    // CLO Button
-    const CCL = document.getElementById("CCL");
-    if (CCL) {
-        CCL.addEventListener('click', function() {
-            textEditor.value = "Als je het niet erg vind, sluit ik nu dan je ticket. Mocht je nog wat tijd over hebben, kan je dan feedback geven in de mail de nu je kant op komt?";
-        });
-    }
-
-    // AWY Button
-    const AWY = document.getElementById("AWY");
-    if (AWY) {
-        AWY.addEventListener('click', function() {
-            textEditor.value = "Ik zie dat je momenteel niet beschikbaar bent. Wanneer heb je tijd om hier naar te kijken? Als ik geen antwoord ontvang kom ik later vandaag bij je terug";
-        });
-    }
-
-    //FUP Button
-    const FUP = document.getElementById("FUP");
-    if (FUP) {
-        FUP.addEventListener('click', function() {
-            const dateObj = new Date;
-            textEditor.value = "FUP " + dateObj.toDateString();
-        });
-    }
-
-
-    // Copy button
-    // Grabbing the textbox area and copying it
-    const CPB = document.getElementById("CPB");
-    if (CPB) {
-    CPB.onclick = function() {
+function SimpleCopy() {
         console.log('Async:1');
         const textEditor = document.getElementById("textEditor");
         const text = textEditor.value; 
@@ -87,13 +36,68 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // Error flow
             console.error('Async: Could not copy text: ', err);
         });
-    }}
+    }
 
 
-//});
+window.addEventListener('DOMContentLoaded', (event) => {
+
+    const textEditor = document.getElementById("textEditor");
+
+    // INT Button
+    if (MDS) {
+        MDS.addEventListener('click', function() {
+            let MSDstr ="Hi , ik ben Maarten van EY technology, ik zie een open ticket over . Hoe is de stand van zaken?";
+            textEditor.value = MSDstr;
+        });
+        MDS.addEventListener('dblclick', SimpleCopy) 
+    }
+
+    //OPN Button
+    const COP = document.getElementById("COP");
+    if (COP) {
+        COP.addEventListener('click', function() {
+            textEditor.value = "Hello (Name), Im (Agent)...";
+        });
+        COP.addEventListener('dblclick', SimpleCopy) 
+    }
+
+    // CLO Button
+    const CCL = document.getElementById("CCL");
+    if (CCL) {
+        CCL.addEventListener('click', function() {
+            textEditor.value = "Als je het niet erg vind, sluit ik nu dan je ticket. Mocht je nog wat tijd over hebben, kan je dan feedback geven in de mail de nu je kant op komt?";
+        });
+        CCL.addEventListener('dblclick', SimpleCopy) 
+    }
+
+    // AWY Button
+    const AWY = document.getElementById("AWY");
+    if (AWY) {
+        AWY.addEventListener('click', function() {
+            textEditor.value = "Ik zie dat je momenteel niet beschikbaar bent. Wanneer heb je tijd om hier naar te kijken? Als ik geen antwoord ontvang kom ik later vandaag bij je terug";
+        });
+        AWY.addEventListener('dblclick', SimpleCopy) 
+    }
+
+    //FUP Button
+
+    if (FUP) {
+        FUP.addEventListener('click', function() {
+            const dateObj = new Date;
+            textEditor.value = "FUP " + dateObj.toDateString();
+        });
+        FUP.addEventListener('dblclick', SimpleCopy) 
+    }
 
 
-//window.addEventListener('DOMContentLoaded', (event) => {
+    // Copy button
+    // Grabbing the textbox area and copying it
+    const CPB = document.getElementById("CPB");
+    if (CPB) {
+        CPB.onclick = SimpleCopy;}
+
+
+
     const TIT = document.getElementById("TIT");
     if (TIT) {
         TIT.addEventListener('click', function() {
