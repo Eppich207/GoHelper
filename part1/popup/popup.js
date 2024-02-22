@@ -29,6 +29,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     const textEditor = document.getElementById("textEditor");
 
+    // INT Button
     const MDS = document.getElementById("MDS");
     if (MDS) {
         MDS.addEventListener('click', function() {
@@ -37,6 +38,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 
+    //OPN Button
     const COP = document.getElementById("COP");
     if (COP) {
         COP.addEventListener('click', function() {
@@ -44,6 +46,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 
+    // CLO Button
     const CCL = document.getElementById("CCL");
     if (CCL) {
         CCL.addEventListener('click', function() {
@@ -51,6 +54,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 
+    // AWY Button
     const AWY = document.getElementById("AWY");
     if (AWY) {
         AWY.addEventListener('click', function() {
@@ -58,8 +62,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 
+    //FUP Button
     const FUP = document.getElementById("FUP");
-    
     if (FUP) {
         FUP.addEventListener('click', function() {
             const dateObj = new Date;
@@ -68,12 +72,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
 
-
+    // Copy button
     // Grabbing the textbox area and copying it
-const YWA = document.getElementById("YWA");
-if (YWA) {
-    // On click event for MSD
-    YWA.onclick = function() {
+    const CPB = document.getElementById("CPB");
+    if (CPB) {
+    CPB.onclick = function() {
         console.log('Async:1');
         const textEditor = document.getElementById("textEditor");
         const text = textEditor.value; 
@@ -84,26 +87,49 @@ if (YWA) {
             // Error flow
             console.error('Async: Could not copy text: ', err);
         });
-    };
-}
+    }}
 
 
+//});
 
-const StartCountdown1 = document.getElementById("StartCountdown1");
-if (StartCountdown1) {
-    // On click event for the standard copy
-    StartCountdown1.onclick = function() {
-        var text = "Buenas dias, mi nombre es Maarten"; 
-        // Console.log
-        navigator.clipboard.writeText(text).then(function() {
-           console.log('Async: Copying to clipboard was successful');
-        }, function(err) {
-            // Error flow
-            console.error(err);
+
+//window.addEventListener('DOMContentLoaded', (event) => {
+    const TIT = document.getElementById("TIT");
+    if (TIT) {
+        TIT.addEventListener('click', function() {
+            textEditor.value = "========================\nTitle: [WIKI_TITLE]\n Age: [Age]\n========================";
         });
-    };
-}
 
+
+        TIT.onclick = function() {
+             
+            chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+                const activeTab = tabs[0];
+                chrome.tabs.sendMessage(activeTab.id, {action: "getWikiData"}, function(response) {
+                    const textEditor = document.getElementById("textEditor");
+                    if (textEditor) {
+                        // Replace the title placeholder
+                        if (response.title) {
+                            textEditor.value = textEditor.value.replace('[WIKI_TITLE]', response.title);
+                        }
+            
+                        // Replace the age placeholder
+                        if (response.age) {
+                            textEditor.value = textEditor.value.replace('[Age]', response.age);
+                        }
+                    }
+                });
+            });
+            navigator.clipboard.writeText(text).then(function() {
+            console.log('Async: Copying to clipboard was successful');
+            }, function(err) {
+                // Error flow
+                console.error(err);
+            });
+        };
+        // On click event for the standard copy
+        
+    }
 });
 
 // Grabbing the current version from the manifest

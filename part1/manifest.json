@@ -1,8 +1,8 @@
 {
   "name": "Agent Assist",
-  "version": "0.2.0",
+  "version": "0.3.1",
   "manifest_version": 3,
-  "description": "Someting simple Maarten Wolf has worked on.",
+  "description": "",
   "permissions": ["activeTab", "scripting","tabs","storage","clipboardWrite","clipboardRead"],
   "icons": {
       "16": "icons/aa16.png",
