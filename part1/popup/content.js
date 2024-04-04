@@ -36,6 +36,36 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 });
 
 
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === "getUserData") {
+      let responseData = {};
+
+      // Assuming you can access the shadow DOM root somehow, 
+      // here's a pseudo code as you cannot directly access shadow DOM from content scripts.
+      const shadowRoot = document.querySelector('custom-element').shadowRoot; // custom-element is a placeholder
+
+      // Now, looking for the element that contains "XXX" which is the user name
+      const userNameLink = shadowRoot.querySelector('now-text-link[title="XXX"]');
+      if (userNameLink) {
+          // Extracting user name. Adjust the selector based on the actual structure.
+          // Assuming the user name is directly inside this element or adjust the path to reach the text node.
+          const userName = userNameLink.textContent || null;
+          responseData.userName = userName;
+
+          console.log("User Name:", userName); // Log the user name
+      } else {
+          // Error flow to console
+          console.log("User name link element not found.");
+      }
+
+      // Sending responseData to the HTML element
+      sendResponse(responseData);
+  }
+  return true;  // indicates the response is sent asynchronously
+});
+
+
+
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
       if (request.action === "copyTextToClipboard") {
