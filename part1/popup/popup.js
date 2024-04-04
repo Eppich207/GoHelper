@@ -56,7 +56,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const COP = document.getElementById("COP");
     if (COP) {
         COP.addEventListener('click', function() {
-            textEditor.value = "Hello (Name), Im (Agent)...";
+            textEditor.value = "We tried to reach out, without any luck. We will be trying again next business day.";
         });
         COP.addEventListener('dblclick', SimpleCopy) 
     }
@@ -65,7 +65,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const CCL = document.getElementById("CCL");
     if (CCL) {
         CCL.addEventListener('click', function() {
-            textEditor.value = "Als je het niet erg vind, sluit ik nu dan je ticket. Mocht je nog wat tijd over hebben, kan je dan feedback geven in de mail de nu je kant op komt?";
+            textEditor.value = "Mocht je nog wat tijd over hebben, kan je dan feedback geven in de mail de nu je kant op komt? En een hele fijne dag nog!";
         });
         CCL.addEventListener('dblclick', SimpleCopy) 
     }
@@ -74,7 +74,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const AWY = document.getElementById("AWY");
     if (AWY) {
         AWY.addEventListener('click', function() {
-            textEditor.value = "Ik zie dat je momenteel niet beschikbaar bent. Wanneer heb je tijd om hier naar te kijken? Als ik geen antwoord ontvang kom ik later vandaag bij je terug";
+            textEditor.value = "Ik zie ook dat je momenteel niet beschikbaar bent. Wanneer heb je tijd om hier naar te kijken? Als ik geen antwoord ontvang kom ik later vandaag bij je terug";
         });
         AWY.addEventListener('dblclick', SimpleCopy) 
     }
