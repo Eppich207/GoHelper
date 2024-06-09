@@ -14,11 +14,22 @@ function SimpleCopy() {
     }
 
 
+function assignCopyFunction(buttonIds) {
+    buttonIds.forEach(function(id) {
+        const button = document.getElementById(id);
+        if (button) {
+            button.onclick = SimpleCopy;
+        }
+    });
+}
+    
+
 window.addEventListener('DOMContentLoaded', (event) => {
 
     const textEditor = document.getElementById("textEditor");
 
     // Opening Button
+    const MDS = document.getElementById("MDS");
     if (MDS) {
         MDS.addEventListener('click', function() {
             let MSDstr ="Hi , ik ben Maarten van EY technology, ik zie een open ticket over . Hoe is de stand van zaken?";
@@ -55,7 +66,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
     // Follow up date Button
-
+    const FUP = document.getElementById("FUP");
     if (FUP) {
         FUP.addEventListener('click', function() {
             const dateObj = new Date;
@@ -65,116 +76,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
 
-    // Copy button
-    // Grabbing the textbox area and copying it
-    const CPB = document.getElementById("CPB");
-    if (CPB) {
-        CPB.onclick = SimpleCopy;};
 
+    // Assigning copy button array
+    assignCopyFunction(["CPB1", "CPB2", "CPB3"]);
 
-
-    const TIT = document.getElementById("TIT");
-    if (TIT) {
-        TIT.addEventListener('click', function() {
-            textEditor.value = "========================\nTitle: [WIKI_TITLE]\n Age: [Age]\n========================";
-        });
-
-
-        TIT.onclick = function() {
-             
-            chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-                const activeTab = tabs[0];
-                chrome.tabs.sendMessage(activeTab.id, {action: "getWikiData"}, function(response) {
-                    const textEditor = document.getElementById("textEditor");
-                    if (textEditor) {
-                        // Replace the title placeholder
-                        if (response.title) {
-                            textEditor.value = textEditor.value.replace('[WIKI_TITLE]', response.title);
-                        }
-            
-                        // Replace the age placeholder
-                        if (response.age) {
-                            textEditor.value = textEditor.value.replace('[Age]', response.age);
-                        }
-                    }
-                });
-            });
-            navigator.clipboard.writeText(text).then(function() {
-            console.log('Async: Copying to clipboard was successful');
-            }, function(err) {
-                // Error flow
-                console.error(err);
-            });
-        };
-        // On click event for the standard copy
-        
-    }
-});
-
-// Grabbing the current version from the manifest
-document.addEventListener('DOMContentLoaded', function () {
-    // Getting manifest
-    let manifest = chrome.runtime.getManifest();
-    let version = manifest.version;
-    //making sure that you can have text infront of it
-    document.getElementById("versionmanifest").textContent += version;
-});
-
-chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    const activeTab = tabs[0];
-    chrome.tabs.sendMessage(activeTab.id, {action: "getWikiData"}, function(response) {
-        const textEditor = document.getElementById("textEditor");
-        if (textEditor) {
-            // Replace the title placeholder
-            if (response.title) {
-                textEditor.value = textEditor.value.replace('[WIKI_TITLE]', response.title);
-            }
-
-            // Replace the age placeholder
-            if (response.age) {
-                textEditor.value = textEditor.value.replace('[Age]', response.age);
-            }
-        }
-    });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-    fetchWikiTitle();
-    
-    
-});
-
-document.addEventListener('DOMContentLoaded', (event) => {
-    document.getElementById('settings').addEventListener('click', function() {
-        window.open('settings.html', '_blank')
-        
-    });
-});
-
-// Assuming you have a button to save the current text for a specific FN button
-function saveTextForFN() {
-    const fnNumber = document.getElementById("fnSelector").value;
-    const textEditor = document.getElementById("textEditor");
-    const text = textEditor.value; 
-    localStorage.setItem(`FN${fnNumber}Text`, text);
-}
-
-
-// Function to load the saved text for an FN button into the textbox
-function loadTextForFN(fnNumber) {
-    const savedText = localStorage.getItem(`FN${fnNumber}Text`);
-    if (savedText) {
-        const textEditor = document.getElementById("textEditor");
-        textEditor.value = savedText;
-    }
-}
-
-
-window.addEventListener('DOMContentLoaded', (event) => {
     const saveButton = document.getElementById("saveFnText");
     if (saveButton) {
         saveButton.addEventListener('click', saveTextForFN);
     }
+
     // Add event listeners for FN buttons as previously described
     // Example for FN1
     const fn1Button = document.getElementById("FN1");
@@ -194,8 +104,53 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const fn3Button = document.getElementById("FN3");
     if (fn3Button) {
         fn3Button.addEventListener('click', function() {
-            loadTextForFN();
+            loadTextForFN(3);
         });
     }
+
+    const fn4Button = document.getElementById("FN4");
+    if (fn4Button) {
+        fn4Button.addEventListener('click', function() {
+             loadTextForFN(4);
+        });
+    }      
+
+    const fn5Button = document.getElementById("FN5");
+    if (fn5Button) {
+        fn5Button.addEventListener('click', function() {
+            loadTextForFN(5);
+        });
+    }
+
 });
+
+
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById('settings').addEventListener('click', function() {
+        window.open('settings.html', '_blank')
+        
+    });
+});
+
+// Saving funtion for Save FN button inside settings.html
+function saveTextForFN() {
+    const fnNumber = document.getElementById("fnSelector").value;
+    const textEditor = document.getElementById("textEditor1");
+    const text = textEditor.value; 
+    localStorage.setItem(`FN${fnNumber}Text`, text);
+}
+
+
+
+// Function to load the saved text for an FN button into the textbox
+function loadTextForFN(fnNumber) {
+    const savedText = localStorage.getItem(`FN${fnNumber}Text`);
+    if (savedText) {
+        const textEditor = document.getElementById("textEditor");
+        textEditor.value = savedText;
+    }
+}
+
+
 

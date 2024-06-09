@@ -1,6 +1,6 @@
 {
   "name": "Agent Assist",
-  "version": "0.3.5",
+  "version": "0.3.7",
   "manifest_version": 3,
   "description": "",
   "permissions": ["activeTab", "scripting","tabs","storage","clipboardWrite","clipboardRead"],
@@ -15,7 +15,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>","*://*.wikipedia.org/*"],
+      "matches": ["<all_urls>"],
       "js": ["popup/content.js"],
       "run_at": "document_end"
     }
