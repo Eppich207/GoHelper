@@ -10,27 +10,24 @@
 
 
     <body class="body">
-        <script src="popup.js"></script>
-        
 
+        <script src="popup.js"></script>
 
         <!--// Section 1: Header and version -->
         <section div class="headerdiv"> 
 
             <h2 class="header">GO HELPER</h2>
-            <button class="settings" id="settings"></button>
+            <title>Go Helper</title>
+            <button class="settings" id="settings" title="settings"></button>
         
             <p id="versionmanifest" class="paragraphHeader"> Version: </p>
 
         </section>
+
+        <!--// Section 2: Buttons-->
+        <section style="width: 400px;">
         
-
-
-
-        <!--// Section 2: Buttons and textbox -->
-        <section id="flexing">
-        
-            <div id="narrow">
+            
             <div style="width: 320px;" >
                 <button class="button-normal" id="MDS">INT</button>
                 <button class="button-normal" id="COP">OPN</button>
@@ -38,27 +35,34 @@
                 <button class="button-normal" id="AWY">AWY</button>
                 <button class="button-normal" id="FUP">FUP</button>
             </div>
-        
-        
-            <!--// Textbox-->
-            <div class="container">
+        </section>
 
-                <textarea class="textbox" id="textEditor" rows="5" cols="50" spellcheck="false">
+        <!--// Section 3: text box and copy-->
+        <section id="flexing">
+            <!--// Copy button left-->
+            <div class="verticalCenter">
+            <button class="greenButton" title="copy" id="CPB">
+            </button>
+            </div>
+
+             <!--// Textbox-->
+            <div class="container" id="narrow">
+                
+                <textarea class="textbox" id="textEditor" rows="5" cols="50" spellcheck="false" title="textbox">
 Welcome to agent assist
 ========================
-
                 </textarea>   
+
             </div>
-            </div>
+
             <!--// Side buttons-->
             <div id="wide">
             <button class="button-inverted" id="CPB">Copy</button>
-            <!--<button class="button-inverted" id="StartCountdown1">Copy</button>-->
-            <button class="button-inverted" id="CPB1">Copy</button>
             </div>
     
-    
         </section>
+
+        <!--// Section 4: Function buttons -->
         <section style="width: 400px;">
             <div style="width: 320px;" >
 
@@ -71,12 +75,6 @@ Welcome to agent assist
             </div>
         </section>
         
-        
-        <!--
-        <div style="width: 320px;" >
-            <button class="button-normal" id="TIT">TITLE</button>
-        </div>
-        -->
 
 
     </body>

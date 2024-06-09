@@ -43,7 +43,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     const textEditor = document.getElementById("textEditor");
 
-    // INT Button
+    // Opening Button
     if (MDS) {
         MDS.addEventListener('click', function() {
             let MSDstr ="Hi , ik ben Maarten van EY technology, ik zie een open ticket over . Hoe is de stand van zaken?";
@@ -52,7 +52,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         MDS.addEventListener('dblclick', SimpleCopy) 
     }
 
-    //OPN Button
+    // AD fup notice Button
     const COP = document.getElementById("COP");
     if (COP) {
         COP.addEventListener('click', function() {
@@ -61,7 +61,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         COP.addEventListener('dblclick', SimpleCopy) 
     }
 
-    // CLO Button
+    // Closing Button
     const CCL = document.getElementById("CCL");
     if (CCL) {
         CCL.addEventListener('click', function() {
@@ -70,7 +70,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         CCL.addEventListener('dblclick', SimpleCopy) 
     }
 
-    // AWY Button
+    // Away message Button
     const AWY = document.getElementById("AWY");
     if (AWY) {
         AWY.addEventListener('click', function() {
@@ -79,12 +79,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
         AWY.addEventListener('dblclick', SimpleCopy) 
     }
 
-    //FUP Button
+    // Follow up date Button
 
     if (FUP) {
         FUP.addEventListener('click', function() {
             const dateObj = new Date;
-            textEditor.value = "FUP " + dateObj.toDateString();
+            textEditor.value = "FUP 1 " + dateObj.toDateString();
         });
         FUP.addEventListener('dblclick', SimpleCopy) 
     }
@@ -94,7 +94,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     // Grabbing the textbox area and copying it
     const CPB = document.getElementById("CPB");
     if (CPB) {
-        CPB.onclick = SimpleCopy;}
+        CPB.onclick = SimpleCopy;};
 
 
 
@@ -175,3 +175,52 @@ document.addEventListener('DOMContentLoaded', (event) => {
         
     });
 });
+
+// Assuming you have a button to save the current text for a specific FN button
+function saveTextForFN() {
+    const fnNumber = document.getElementById("fnSelector").value;
+    const textEditor = document.getElementById("textEditor");
+    const text = textEditor.value; 
+    localStorage.setItem(`FN${fnNumber}Text`, text);
+}
+
+
+// Function to load the saved text for an FN button into the textbox
+function loadTextForFN(fnNumber) {
+    const savedText = localStorage.getItem(`FN${fnNumber}Text`);
+    if (savedText) {
+        const textEditor = document.getElementById("textEditor");
+        textEditor.value = savedText;
+    }
+}
+
+
+window.addEventListener('DOMContentLoaded', (event) => {
+    const saveButton = document.getElementById("saveFnText");
+    if (saveButton) {
+        saveButton.addEventListener('click', saveTextForFN);
+    }
+    // Add event listeners for FN buttons as previously described
+    // Example for FN1
+    const fn1Button = document.getElementById("FN1");
+    if (fn1Button) {
+        fn1Button.addEventListener('click', function() {
+            loadTextForFN(1);
+        });
+    }
+    // Repeat adding click listeners for FN2, FN3, FN4, FN5
+    const fn2Button = document.getElementById("FN2");
+    if (fn2Button) {
+        fn2Button.addEventListener('click', function() {
+            loadTextForFN(2);
+        });
+    }
+
+    const fn3Button = document.getElementById("FN3");
+    if (fn3Button) {
+        fn3Button.addEventListener('click', function() {
+            loadTextForFN();
+        });
+    }
+});
+

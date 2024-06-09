@@ -124,3 +124,24 @@ display: inline;
     margin-bottom: 10px;
 
 }
+
+.greenButton{
+
+    background-color: #00af3d;
+    border: none;
+    width: 10px; 
+    height: 106px;
+    margin-top: 5px;
+    padding-top: 0;
+    padding-bottom: 0;
+
+}
+
+.verticalCenter{
+
+    position: relative;
+    border: none;
+    height: 119px;
+    width: 10px;
+
+}

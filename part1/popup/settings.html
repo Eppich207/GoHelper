@@ -17,30 +17,23 @@
             </div>
             <script src="popup.js"></script>
             <div class="container">
-                <textarea class="textbox" id="textEditor" rows="5" cols="50" spellcheck="false">
-Welcome to agent assist
-==========================
-
-Click the button on the left <<
-To copy the text in this box
-
-Click the button on the right >> 
-To copy a sample text
-
-Click any buttons below \/ \/ \/
-to prefill this area with a text
-
-========================
-
-This text will automatically fill
-with the title of a wiki page
-if you open this on wikipedia
-
-========================
-Title: [WIKI_TITLE]
-Age: [Age]
-========================
+                <textarea class="textbox" id="textEditor1" rows="5" cols="50" spellcheck="false">
+Save your own text here
                 </textarea>
+
+
+            <div id="saveTextUI">
+                <select id="fnSelector">
+                    <option value="1">FN1</option>
+                    <option value="2">FN2</option>
+                    <option value="3">FN3</option>
+                    <option value="4">FN4</option>
+                    <option value="5">FN5</option>
+                </select>
+                <button id="saveFnText">Save Text</button>
+            </div>
+    
+
             </div>
     </body>
 </html>
