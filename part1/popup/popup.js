@@ -1,30 +1,5 @@
 
 
-function fetchWikiTitle(retries = 3) {
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        const activeTab = tabs[0];
-        chrome.scripting.executeScript({
-            target: {tabId: activeTab.id},
-            files: ['popup/content.js']
-        }, () => {
-            chrome.tabs.sendMessage(activeTab.id, {action: "getWikiTitle"}, function(response) {
-                if (chrome.runtime.lastError) {
-                    if (retries > 0) {
-                        setTimeout(() => fetchWikiTitle(retries - 1), 500);
-                    } else {
-                        console.error('Failed to fetch Wikipedia title after multiple retries.');
-                    }
-                } else if (response && response.title) {
-                    const textEditor = document.getElementById("textEditor");
-                    if (textEditor) {
-                        textEditor.value = textEditor.value.replace('[WIKI_TITLE]', response.title);
-                    }
-                }
-            });
-        });
-    });
-}
-
 function SimpleCopy() {
         console.log('Async:1');
         const textEditor = document.getElementById("textEditor");
