@@ -125,6 +125,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 
 
+// Grabbing the current version from the manifest
+document.addEventListener('DOMContentLoaded', function () {
+    // Getting manifest
+    let manifest = chrome.runtime.getManifest();
+    let version = manifest.version;
+    //making sure that you can have text infront of it
+    document.getElementById("versionmanifest").textContent += version;
+});
+
 
 document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('settings').addEventListener('click', function() {
@@ -141,7 +150,15 @@ function saveTextForFN() {
     localStorage.setItem(`FN${fnNumber}Text`, text);
 }
 
-
+// Grabbing the current version from the manifest
+document.addEventListener('DOMContentLoaded', function () {
+    // Getting manifest
+    let manifest = chrome.runtime.getManifest();
+    let version = manifest.version;
+    //making sure that you can have text infront of it
+    document.getElementById("versionmanifest").textContent += version;
+});
+z
 
 // Function to load the saved text for an FN button into the textbox
 function loadTextForFN(fnNumber) {
