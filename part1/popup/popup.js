@@ -1,5 +1,6 @@
 console.log("popup.js loaded");
 
+
 function SimpleCopy() {
     
     const textEditor = document.getElementById("textEditor");
@@ -23,6 +24,7 @@ function assignCopyFunction(buttonIds) {
 function initializePopup() {
 
     const textEditor = document.getElementById("textEditor");
+
 
     const MDS = document.getElementById("MDS");
     if (MDS) {
@@ -73,11 +75,13 @@ function initializePopup() {
 
     assignCopyFunction(["CPB1", "CPB2", "CPB3"]);
 
+
     const fn1Button = document.getElementById("FN1");
     if (fn1Button) {
         fn1Button.addEventListener('click', function() {
             loadTextForFN(1);
         });
+
     }
     const fn2Button = document.getElementById("FN2");
     if (fn2Button) {
@@ -117,6 +121,7 @@ function initializeSettings() {
         loadButton.addEventListener('click', loadFnTextforSettings);
     }
 }
+
 
 function saveTextForFN() {
     const fnNumber = document.getElementById("fnSelector").value;
@@ -158,6 +163,7 @@ function loadFnTextforSettings() {
     });
 }
 
+
 document.addEventListener('DOMContentLoaded', (event) => {
     
     if (document.getElementById('textEditor1')) {
@@ -180,3 +186,4 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 });
+
