@@ -1,6 +1,6 @@
 {
   "name": "Agent Assist",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "manifest_version": 3,
   "description": "",
   "permissions": ["activeTab", "scripting","tabs","storage","clipboardWrite","clipboardRead"],
