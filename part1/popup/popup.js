@@ -137,6 +137,7 @@ function loadTextForFN(fnNumber) {
 
 function loadFnText() {
     const fnNumber = document.getElementById("fnSelector").value;
+    console.log('loaded constants');
     chrome.storage.sync.get(`FN${fnNumber}Text`, function(result) {
         if (result[`FN${fnNumber}Text`]) {
             const textEditor = document.getElementById("textEditor1");
