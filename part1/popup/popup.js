@@ -134,3 +134,14 @@ function loadTextForFN(fnNumber) {
         }
     });
 }
+
+function loadFnText() {
+    const fnNumber = document.getElementById("fnSelector").value;
+    chrome.storage.sync.get(`FN${fnNumber}Text`, function(result) {
+        if (result[`FN${fnNumber}Text`]) {
+            const textEditor = document.getElementById("textEditor1");
+            textEditor.value = result[`FN${fnNumber}Text`];
+        }
+    });
+
+}
