@@ -27,30 +27,23 @@
         <!-- settings -->
         <div class="container">
             <h2 id="versionmanifest" class="header" style="margin-left: 15px;">GO HELPER Version:</h2>
-            <textarea class="textbox" id="textEditor1" rows="5" cols="50" spellcheck="false" title="textEditor1">Save your own text here</textarea>
-            <!-- FN settings -->
-            <div id="saveTextUI" style="margin-left: 15px;">
-                <select id="fnSelector">
-                    <option value="1">FN1</option>
-                    <option value="2">FN2</option>
-                    <option value="3">FN3</option>
-                    <option value="4">FN4</option>
-                    <option value="5">FN5</option>
-                </select>
-                <button id="saveFnText">Save Text</button>
-                <button id="loadFnTextforSettings">Load Text</button>
-            </div>
+            <br>
             <!-- Add remove buttons -->
-            <div style="border-top: 2px solid; margin-top: 5px; margin-bottom: 5px;">
-                
+            <div style="margin-top: 5px; margin-bottom: 5px;">
                 <button id="createNewButton" class=".buttonName">Create New</Button>
-                <button id="retrieveButton" class=".buttonRetrieve">Retrieve Text</Button>
+                <button id="retrieveButton" class="buttonRetrieve">Retrieve Text</button>
                 <button id="deleteButton" class=".buttonDelete">Delete Button</Button>
-            <textarea readonly class="textbox1" id="newbuttontext" rows="5" cols="50" spellcheck="false" title="newbuttontext"></textarea>
+                <textarea readonly class="textbox1" id="newbuttontext" rows="5" cols="50" spellcheck="false" title="newbuttontext"></textarea>
+
+                <select id="buttonDropdown">
+                    <option value="">Select a button</option>
+                </select>
+                
+
             </div>
         </div>
         <!-- iframe -->
-        <iframe src="popup.html" class="popup-frame"></iframe>
+        <!-- <iframe src="popup.html" class="popup-frame"></iframe> -->
 
         <script src="popup.js"></script>
         <script src="content.js"></script>

@@ -2,7 +2,6 @@ console.log("popup.js loaded");
 
 
 function SimpleCopy() {
-    
     const textEditor = document.getElementById("textEditor");
     const text = textEditor.value;
     navigator.clipboard.writeText(text).then(function() {
@@ -71,81 +70,7 @@ function initializePopup() {
         FUP.addEventListener('dblclick', SimpleCopy);
     }
 
-  
-
-
-    const fn1Button = document.getElementById("FN1");
-    if (fn1Button) {
-        fn1Button.addEventListener('click', function() {
-            loadTextForFN(1);
-        });
-
-    }
-    const fn2Button = document.getElementById("FN2");
-    if (fn2Button) {
-        fn2Button.addEventListener('click', function() {
-            loadTextForFN(2);
-        });
-    }
-    const fn3Button = document.getElementById("FN3");
-    if (fn3Button) {
-        fn3Button.addEventListener('click', function() {
-            loadTextForFN(3);
-        });
-    }
-    const fn4Button = document.getElementById("FN4");
-    if (fn4Button) {
-        fn4Button.addEventListener('click', function() {
-            loadTextForFN(4);
-        });
-    }
-    const fn5Button = document.getElementById("FN5");
-    if (fn5Button) {
-        fn5Button.addEventListener('click', function() {
-            loadTextForFN(5);
-        });
-    }
 }
-
-function initializeSettings() {
-    
-    const saveButton = document.getElementById("saveFnText");
-    if (saveButton) {
-        console.log("click!");
-        saveButton.addEventListener('click', saveTextForFN);
-        console.log("executed fx")
-    }
-
-}
-
-
-function saveTextForFN() {
-    const fnNumber = document.getElementById("fnSelector").value;
-    console.log(fnNumber);
-    const textEditor1 = document.getElementById("textEditor1");
-    const text = textEditor1.value;
-    console.log(text);
-
-    let data = {};
-    //data[`FN${fnNumber}Text`] = text;
-    //chrome.storage.sync.set(data, function() {
-        
-    //});
-}
-
-function loadTextForFN(fnNumber) {
-    
-    chrome.storage.sync.get(`FN${fnNumber}Text`, function(result) {
-        if (result[`FN${fnNumber}Text`]) {
-            const textEditor = document.getElementById("textEditor");
-            textEditor.value = result[`FN${fnNumber}Text`];
-            
-        } else {
-            
-        }
-    });
-}
-
 
 
 document.addEventListener('DOMContentLoaded', (event) => {
