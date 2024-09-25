@@ -3,23 +3,32 @@
     <head>
         <meta charset="utf-8" name="viewport">
         <link rel="stylesheet" type="text/css" href="styles.css">
+        <style>
+            body {
+                display: flex;
+                flex-direction: row;
+            }
+            .popup-frame {
+                width: 600px;
+                min-width: 600px;/* Adjust width as needed */
+                height: 400px; /* Full screen height */
+                border: 3px solid #8a8a8a;
+            }
+            .container {
+               
+                padding: 20px;
+                box-sizing: border-box;
+            }
+        </style>
     </head>
     <body class="background">
-
-            <div> 
-            <h2 id="versionmanifest" class="header" style="margin-left: 15px;">GO HELPER Version: </h2>
-            
-            </div>
-
-            <script src="popup.js"></script>
-            <script src="content.js"></script>
-
-            <div class="container">
-                <textarea class="textbox" id="textEditor1" rows="5" cols="50" spellcheck="false" title="textEditor1">
-Save your own text here
-                </textarea>
-
-
+        <!-- Display the popup.html on the left using an iframe -->
+        
+        <!-- settings -->
+        <div class="container">
+            <h2 id="versionmanifest" class="header" style="margin-left: 15px;">GO HELPER Version:</h2>
+            <textarea class="textbox" id="textEditor1" rows="5" cols="50" spellcheck="false" title="textEditor1">Save your own text here</textarea>
+            <!-- FN settings -->
             <div id="saveTextUI" style="margin-left: 15px;">
                 <select id="fnSelector">
                     <option value="1">FN1</option>
@@ -31,25 +40,18 @@ Save your own text here
                 <button id="saveFnText">Save Text</button>
                 <button id="loadFnTextforSettings">Load Text</button>
             </div>
-            <!--// Not working 
-            <div style="margin-left: 15px; margin-top: 10px;">
-                <textarea class="textbox2" id="textEditor2" rows="2" cols="30" spellcheck="false" title="textEditor2">
-Save your own text here
-                </textarea>
-                <div style="margin-left: auto;">
-                <select id="button-selector">
-                    <option value="1">FN1</option>
-                    <option value="2">FN2</option>
-                    <option value="3">FN3</option>
-                    <option value="4">FN4</option>
-                    <option value="5">FN5</option>
-                </select>
-                <button id="saveFnText">Save Text</button>
-                <button id="loadFnTextforSettings">Load Text</button>
+            <!-- Add remove buttons -->
+            <div style="border-top: 2px solid; margin-top: 5px; margin-bottom: 5px;">
+                <button id="createNewButton" class=".buttonName">Create New</Button>
+                <textarea class="textbox" id="newbuttontext" rows="5" cols="50" spellcheck="false" title="newbuttontext">Name</textarea>
             </div>
-            </div>
-    -->
 
-            </div>
+        </div>
+        <!-- iframe -->
+        <iframe src="popup.html" class="popup-frame"></iframe>
+
+        <script src="popup.js"></script>
+        <script src="content.js"></script>
+        <script src="settings.js"></script>
     </body>
 </html>
