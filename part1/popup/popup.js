@@ -111,26 +111,26 @@ function initializeSettings() {
     
     const saveButton = document.getElementById("saveFnText");
     if (saveButton) {
+        console.log("click!");
         saveButton.addEventListener('click', saveTextForFN);
+        console.log("executed fx")
     }
 
-    const loadButton = document.getElementById("loadFnTextforSettings");
-    if (loadButton) {
-        loadButton.addEventListener('click', loadFnTextforSettings);
-    }
 }
 
 
 function saveTextForFN() {
     const fnNumber = document.getElementById("fnSelector").value;
-    const textEditor = document.getElementById("textEditor1");
-    const text = textEditor.value;
-    
+    console.log(fnNumber);
+    const textEditor1 = document.getElementById("textEditor1");
+    const text = textEditor1.value;
+    console.log(text);
+
     let data = {};
-    data[`FN${fnNumber}Text`] = text;
-    chrome.storage.sync.set(data, function() {
+    //data[`FN${fnNumber}Text`] = text;
+    //chrome.storage.sync.set(data, function() {
         
-    });
+    //});
 }
 
 function loadTextForFN(fnNumber) {
@@ -146,20 +146,6 @@ function loadTextForFN(fnNumber) {
     });
 }
 
-function loadFnTextforSettings() {
-    
-    const fnNumber = document.getElementById("fnSelector").value;
-    const textEditor = document.getElementById("textEditor1");
-    
-    chrome.storage.sync.get(`FN${fnNumber}Text`, function(result) {
-        if (result[`FN${fnNumber}Text`]) {
-            textEditor.value = result[`FN${fnNumber}Text`];
-            
-        } else {
-            
-        }
-    });
-}
 
 
 document.addEventListener('DOMContentLoaded', (event) => {
