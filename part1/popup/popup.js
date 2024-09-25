@@ -12,14 +12,12 @@ function SimpleCopy() {
     });
 }
 
-function assignCopyFunction(buttonIds) {
-    buttonIds.forEach(function(id) {
-        const button = document.getElementById(id);
-        if (button) {
-            button.onclick = SimpleCopy;
-        }
-    });
-}
+const CopyButtons = document.querySelectorAll('.copy-buttons');
+    CopyButtons.forEach(button => {
+        console.log("click");
+    button.addEventListener("click", SimpleCopy);
+});
+
 
 function initializePopup() {
 
@@ -30,7 +28,7 @@ function initializePopup() {
     if (MDS) {
         MDS.addEventListener('click', function() {
 
-            let MSDstr = "Hi , ik ben Maarten van EY technology, ik zie een open ticket over . Hoe is de stand van zaken?";
+            let MSDstr = "Hi , ik ben Maarten van service desk, ik zie een open ticket over . Hoe is de stand van zaken?";
             textEditor.value = MSDstr;
         });
         MDS.addEventListener('dblclick', SimpleCopy);
@@ -49,7 +47,7 @@ function initializePopup() {
     if (CCL) {
         CCL.addEventListener('click', function() {
 
-            textEditor.value = "Mocht je nog wat tijd over hebben, kan je dan feedback geven in de mail de nu je kant op komt? En een hele fijne dag nog!";
+            textEditor.value = "If you have any additional time, could you leave some feedback in the email comming your way now? Thanks, and I hope you have a great day!";
         });
         CCL.addEventListener('dblclick', SimpleCopy);
     }
@@ -58,7 +56,7 @@ function initializePopup() {
     if (AWY) {
         AWY.addEventListener('click', function() {
 
-            textEditor.value = "Ik zie ook dat je momenteel niet beschikbaar bent. Wanneer heb je tijd om hier naar te kijken? Als ik geen antwoord ontvang kom ik later vandaag bij je terug";
+            textEditor.value = "I see you have not been able to respond, I will be placing the ticket for the time being and reach out next business day.";
         });
         AWY.addEventListener('dblclick', SimpleCopy);
     }
@@ -73,7 +71,7 @@ function initializePopup() {
         FUP.addEventListener('dblclick', SimpleCopy);
     }
 
-    assignCopyFunction(["CPB1", "CPB2", "CPB3"]);
+  
 
 
     const fn1Button = document.getElementById("FN1");

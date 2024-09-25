@@ -7,18 +7,20 @@
     <body class="background">
 
             <div> 
-            <h2 id="version" class="header">GO HELPER Version: </h2>
-            <button class="settings" id="settings"></button>
+            <h2 id="versionmanifest" class="header" style="margin-left: 15px;">GO HELPER Version: </h2>
+            
             </div>
 
             <script src="popup.js"></script>
+            <script src="content.js"></script>
+
             <div class="container">
                 <textarea class="textbox" id="textEditor1" rows="5" cols="50" spellcheck="false" title="textEditor1">
 Save your own text here
                 </textarea>
 
 
-            <div id="saveTextUI">
+            <div id="saveTextUI" style="margin-left: 15px;">
                 <select id="fnSelector">
                     <option value="1">FN1</option>
                     <option value="2">FN2</option>
@@ -29,7 +31,24 @@ Save your own text here
                 <button id="saveFnText">Save Text</button>
                 <button id="loadFnTextforSettings">Load Text</button>
             </div>
-    
+            <!--// Not working 
+            <div style="margin-left: 15px; margin-top: 10px;">
+                <textarea class="textbox2" id="textEditor2" rows="2" cols="30" spellcheck="false" title="textEditor2">
+Save your own text here
+                </textarea>
+                <div style="margin-left: auto;">
+                <select id="button-selector">
+                    <option value="1">FN1</option>
+                    <option value="2">FN2</option>
+                    <option value="3">FN3</option>
+                    <option value="4">FN4</option>
+                    <option value="5">FN5</option>
+                </select>
+                <button id="saveFnText">Save Text</button>
+                <button id="loadFnTextforSettings">Load Text</button>
+            </div>
+            </div>
+    -->
 
             </div>
     </body>
