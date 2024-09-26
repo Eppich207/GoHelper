@@ -72,14 +72,31 @@ function initializePopup() {
 
 }
 
+function getCustomButtonsPU() {
+    chrome.storage.sync.get(null, function(items) {
+        let customButtons = [];
+        for (let key in items) {
+            if (items.hasOwnProperty(key)) {
+                let item = items[key];
+                if (typeof item === 'object' && item !== null && 'customTag' in item) {
+                    customButtons.push(item);
+                }
+            }
+        }
+
+        if (customButtons.length > 0) {
+            console.log("Retrieved custom buttons with customTag");
+        } else {
+            console.log("No custom buttons found with customTag");
+        }
+    });
+}
 
 document.addEventListener('DOMContentLoaded', (event) => {
     
-    if (document.getElementById('textEditor1')) {
-        initializeSettings();
-    } else {
-        initializePopup();
-    }
+    initializePopup();
+    getCustomButtonsPU();
+    
     const versionElement = document.getElementById("versionmanifest");
     if (versionElement) {
         

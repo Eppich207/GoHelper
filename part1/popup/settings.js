@@ -21,6 +21,7 @@ function initializeSettings() {
         deleteButton.addEventListener('click', clearSyncedData, false);
     }
 }
+
 function clearSyncedData() {
     alert('Data cannot be restored after deletion');
     const dateObj = new Date();
@@ -58,8 +59,6 @@ function saveNewButton() {
 function getCustomButtons() {
     chrome.storage.sync.get(null, function(items) {
         let customButtons = [];
-
-        // Loop through all items in storage and filter those with customTag
         for (let key in items) {
             if (items.hasOwnProperty(key)) {
                 let item = items[key];
