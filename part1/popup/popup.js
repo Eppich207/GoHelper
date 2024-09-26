@@ -26,8 +26,7 @@ function initializePopup() {
     const MDS = document.getElementById("MDS");
     if (MDS) {
         MDS.addEventListener('click', function() {
-
-            let MSDstr = "Hi , I'm Maarten from the Hub ServiceDesk, I'm reaching out in regards to an open ticket .";
+            let MSDstr = "Hi , I'm " +  FirstName[0].Name + " from the Hub ServiceDesk, I'm reaching out in regards to an open ticket .";
             textEditor.value = MSDstr;
         });
         MDS.addEventListener('dblclick', SimpleCopy);
@@ -104,12 +103,32 @@ getCustomButtonsPU().then(buttons => {
     renderButtons(customButtons);
 });
 
+let FirstName = [];
+function getAgentName() {
+    chrome.storage.sync.get(null, function(items) {
+        
+        for (let key in items) {
+            if (items.hasOwnProperty(key)) {
+                let item = items[key];
+                if (typeof item === 'object' && item !== null && 'FirstName' in item) {
+                    FirstName.push(item);
+                }
+            }
+        }
+        console.log('FirstName:', FirstName)
+        if (FirstName.length > 0) {
+            console.log("Retrieved FN");
+        } else {
+            alert("Please set your name in the settings menu");
+        }
+    });
+}
 
 // Function to render buttons into the popup.html
 function renderButtons(buttonsArray) {
 
     const buttonsContainer = document.getElementById("dynamicButtonsContainer");
-    buttonsContainer.innerHTML = '';
+    buttonsContainer.innerHTML = "";
 
     buttonsArray.forEach(button => {
         let newButton = document.createElement("button");
@@ -129,9 +148,11 @@ function renderButtons(buttonsArray) {
 
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    
+
+    getAgentName();
     initializePopup();
     getCustomButtonsPU();
+
     
     const versionElement = document.getElementById("versionmanifest");
     if (versionElement) {
