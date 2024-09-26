@@ -3,6 +3,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     initializeSettings();
     getCustomButtons();
+    checkAgentName()
 });
 
 function initializeSettings() {
@@ -23,9 +24,9 @@ function initializeSettings() {
 }
 
 function clearSyncedData() {
-    alert('Data cannot be restored after deletion');
+    alert('Attention, you are about to enter a menu to clear data. This operation is useful if the addin is not running properly.');
     const dateObj = new Date();
-    let datePromt = prompt("Are you sure to clear all the buttons? Please enter: " + dateObj.toDateString());
+    let datePromt = prompt("Are you sure to clear all the buttons? Please type: " +'"'+ dateObj.toDateString() + '"');
     if (datePromt == dateObj.toDateString()) {
         chrome.storage.sync.clear(function() {
             alert('All data cleared from storage');
@@ -73,38 +74,28 @@ function getCustomButtons() {
             }
         }
 
-        // Get the dropdown element
         const dropdown = document.getElementById("buttonDropdown");
-
-        // Clear the dropdown (in case it's been populated previously)
         dropdown.innerHTML = '<option value="">Select a button</option>';
 
-        // Populate the dropdown with button names
         customButtons.forEach(button => {
             let option = document.createElement("option");
-            option.value = button.Name;  // Set the value to the button name
-            option.textContent = button.Name;  // Display the button name
-            dropdown.appendChild(option);  // Add the option to the dropdown
+            option.value = button.Name;  
+            option.textContent = button.Name; 
+            dropdown.appendChild(option);
         });
 
-        // Handle dropdown selection change
+       
         dropdown.addEventListener('change', function() {
-            // Get the selected button's name
             const selectedButtonName = dropdown.value;
-            
-            // Find the button in customButtons array
             const selectedButton = customButtons.find(button => button.Name === selectedButtonName);
-            
-            // Display the corresponding text in the textarea
             const newButtonTextarea = document.getElementById("newbuttontext");
             if (selectedButton) {
-                newButtonTextarea.value = selectedButton.Text; // Display the button's text in the textarea
+                newButtonTextarea.value = selectedButton.Text; 
             } else {
-                newButtonTextarea.value = ""; // Clear the textarea if no valid button is selected
+                newButtonTextarea.value = ""; 
             }
         });
 
-        // Log to confirm custom buttons are retrieved
         if (customButtons.length > 0) {
             console.log("Retrieved custom buttons with customTag:", customButtons);
         } else {
@@ -115,40 +106,66 @@ function getCustomButtons() {
 
 
 
-    /*const saveButton = document.getElementById("saveFnText");
-    if (saveButton) {
-        console.log("click!");
-        saveButton.addEventListener('click', saveTextForFN);
-        console.log("executed fx")
-    }*/
-
-
-
-/* function saveTextForFN() {
-    const fnNumber = document.getElementById("fnSelector").value;
-    console.log(fnNumber);
-    const textEditor1 = document.getElementById("textEditor1");
-    const text = textEditor1.value;
-    console.log(text);
-
-    let data = {};
-    data[`FN${fnNumber}Text`] = text;
-    chrome.storage.sync.set(data, function() {
+function saveAgentName() {
+    let agentFName = prompt("Please enter your name:");
+    if (agentFName !== null) {
         
-    });
+        
+            console.log(agentFName, "created with success");
 
+            let agentName = {
+                Name: agentFName,
+                FirstName: 'FirstName' 
+            };
+
+            chrome.storage.sync.set({ [agentFName]: agentName }, function() {
+                console.log('Button saved:', agentName);
+            });
+        
+    }
+    checkAgentName();
 }
 
-function loadTextForFN(fnNumber) {
-    
-    chrome.storage.sync.get(`FN${fnNumber}Text`, function(result) {
-        if (result[`FN${fnNumber}Text`]) {
-            const textEditor = document.getElementById("textEditor");
-            textEditor.value = result[`FN${fnNumber}Text`];
-            
+function getAgentName() {
+    chrome.storage.sync.get(null, function(items) {
+        let FirstName = [];
+        for (let key in items) {
+            if (items.hasOwnProperty(key)) {
+                let item = items[key];
+                if (typeof item === 'object' && item !== null && 'FirstName' in item) {
+                    FirstName.push(item);
+                }
+            }
+        }
+
+        if (FirstName.length > 0) {
+            console.log("Retrieved FN");
         } else {
-            
+            console.alert("null");
+        }
+
+        console.log('FirstName:', FirstName)
+    });
+}
+
+function checkAgentName() {
+    
+    chrome.storage.sync.get(null, function(items) {
+        let FirstName = [];
+        for (let key in items) {
+            if (items.hasOwnProperty(key)) {
+                let item = items[key];
+                if (typeof item === 'object' && item !== null && 'FirstName' in item) {
+                    FirstName.push(item);
+                }
+            }
+        }
+
+        if (FirstName.length > 0) {
+            console.log("Retrieved FN");
+        } else {
+            saveAgentName();
         }
     });
+
 }
-    */

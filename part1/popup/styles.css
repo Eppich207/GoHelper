@@ -172,3 +172,54 @@ display: inline;
     width: 10px;
 
 }
+
+.redButton{
+
+    background-color: #870000;
+    border: none;
+    color: rgb(237, 237, 237);
+    padding: 10px 10px;
+    margin: 5px 5px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+
+}
+.redButton:hover {
+
+    background-color: #a80000;
+    border: none;
+    color: rgb(237, 237, 237);
+    padding: 10px 10px;
+    margin: 5px 5px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+
+    }
+
+.createButton{
+
+    background-color: #006703;
+    border: none;
+    color: rgb(237, 237, 237);
+    padding: 10px 10px;
+    margin: 5px 5px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+
+}
+
+.createButton:hover {
+
+    background-color: #008204;
+    border: none;
+    color: rgb(237, 237, 237);
+    padding: 10px 10px;
+    margin: 5px 5px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+
+    }

@@ -27,7 +27,7 @@ function initializePopup() {
     if (MDS) {
         MDS.addEventListener('click', function() {
 
-            let MSDstr = "Hi , ik ben Maarten van service desk, ik zie een open ticket over . Hoe is de stand van zaken?";
+            let MSDstr = "Hi , I'm Maarten from the Hub ServiceDesk, I'm reaching out in regards to an open ticket .";
             textEditor.value = MSDstr;
         });
         MDS.addEventListener('dblclick', SimpleCopy);
@@ -46,7 +46,7 @@ function initializePopup() {
     if (CCL) {
         CCL.addEventListener('click', function() {
 
-            textEditor.value = "If you have any additional time, could you leave some feedback in the email comming your way now? Thanks, and I hope you have a great day!";
+            textEditor.value = "If you have any additional time, could you leave some feedback in the email comming your way now? Thank you, and I hope you have a great day!";
         });
         CCL.addEventListener('dblclick', SimpleCopy);
     }
@@ -55,7 +55,7 @@ function initializePopup() {
     if (AWY) {
         AWY.addEventListener('click', function() {
 
-            textEditor.value = "I see you have not been able to respond, I will be placing the ticket for the time being and reach out next business day.";
+            textEditor.value = "I see you have not been able to respond, I will be placing the ticket for the time being and will be waiting for your response.";
         });
         AWY.addEventListener('dblclick', SimpleCopy);
     }
@@ -72,47 +72,43 @@ function initializePopup() {
 
 }
 
-let customButtons = []; // Declare a constant to store the custom buttons array
-
-// Modify getCustomButtons to return the array of custom buttons
+let customButtons = []; 
 function getCustomButtonsPU() {
     return new Promise((resolve, reject) => {
         chrome.storage.sync.get(null, function(items) {
             let buttonsArray = [];
 
-            // Loop through all items in storage and filter those with customTag
             for (let key in items) {
                 if (items.hasOwnProperty(key)) {
                     let item = items[key];
                     if (typeof item === 'object' && item !== null && 'customTag' in item) {
-                        buttonsArray.push(item); // Push to array if it has the customTag
+                        buttonsArray.push(item); 
                     }
                 }
             }
 
             if (buttonsArray.length > 0) {
                 console.log("Retrieved custom buttons with customTag:", buttonsArray);
-                resolve(buttonsArray); // Resolve the promise with the buttons array
+                resolve(buttonsArray); 
             } else {
                 console.log("No custom buttons found with customTag");
-                resolve([]); // Resolve with an empty array if none found
+                resolve([]); 
             }
         });
     });
 }
 
-// Fetch and store custom buttons in constant memory on script load
+
 getCustomButtonsPU().then(buttons => {
-    customButtons = buttons; // Store the array in the global constant
-    renderButtons(customButtons); // Call renderButtons (which we'll define in renderButtons.js)
+    customButtons = buttons;
+    renderButtons(customButtons);
 });
 
 
 // Function to render buttons into the popup.html
 function renderButtons(buttonsArray) {
-    const buttonsContainer = document.getElementById("dynamicButtonsContainer");
 
-    // Clear the container before rendering new buttons
+    const buttonsContainer = document.getElementById("dynamicButtonsContainer");
     buttonsContainer.innerHTML = '';
 
     buttonsArray.forEach(button => {
@@ -124,8 +120,6 @@ function renderButtons(buttonsArray) {
             const textEditor = document.getElementById("textEditor");
             textEditor.value = button.Text;
         });
-
-        // Append the new button to the container
         buttonsContainer.appendChild(newButton);
     });
 
@@ -146,6 +140,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let version = manifest.version;
         versionElement.textContent += version;
     }
+
 
     const settingsButton = document.getElementById('settings');
     if (settingsButton) {
