@@ -72,25 +72,67 @@ function initializePopup() {
 
 }
 
+let customButtons = []; // Declare a constant to store the custom buttons array
+
+// Modify getCustomButtons to return the array of custom buttons
 function getCustomButtonsPU() {
-    chrome.storage.sync.get(null, function(items) {
-        let customButtons = [];
-        for (let key in items) {
-            if (items.hasOwnProperty(key)) {
-                let item = items[key];
-                if (typeof item === 'object' && item !== null && 'customTag' in item) {
-                    customButtons.push(item);
+    return new Promise((resolve, reject) => {
+        chrome.storage.sync.get(null, function(items) {
+            let buttonsArray = [];
+
+            // Loop through all items in storage and filter those with customTag
+            for (let key in items) {
+                if (items.hasOwnProperty(key)) {
+                    let item = items[key];
+                    if (typeof item === 'object' && item !== null && 'customTag' in item) {
+                        buttonsArray.push(item); // Push to array if it has the customTag
+                    }
                 }
             }
-        }
 
-        if (customButtons.length > 0) {
-            console.log("Retrieved custom buttons with customTag");
-        } else {
-            console.log("No custom buttons found with customTag");
-        }
+            if (buttonsArray.length > 0) {
+                console.log("Retrieved custom buttons with customTag:", buttonsArray);
+                resolve(buttonsArray); // Resolve the promise with the buttons array
+            } else {
+                console.log("No custom buttons found with customTag");
+                resolve([]); // Resolve with an empty array if none found
+            }
+        });
     });
 }
+
+// Fetch and store custom buttons in constant memory on script load
+getCustomButtonsPU().then(buttons => {
+    customButtons = buttons; // Store the array in the global constant
+    renderButtons(customButtons); // Call renderButtons (which we'll define in renderButtons.js)
+});
+
+
+// Function to render buttons into the popup.html
+function renderButtons(buttonsArray) {
+    const buttonsContainer = document.getElementById("dynamicButtonsContainer");
+
+    // Clear the container before rendering new buttons
+    buttonsContainer.innerHTML = '';
+
+    buttonsArray.forEach(button => {
+        let newButton = document.createElement("button");
+        newButton.textContent = button.Name; 
+        newButton.classList.add("dynamic-button");
+        newButton.classList.add("button-normal"); 
+        newButton.addEventListener("click", function() {
+            const textEditor = document.getElementById("textEditor");
+            textEditor.value = button.Text;
+        });
+
+        // Append the new button to the container
+        buttonsContainer.appendChild(newButton);
+    });
+
+    console.log("Rendered buttons:", buttonsArray);
+}
+
+
 
 document.addEventListener('DOMContentLoaded', (event) => {
     

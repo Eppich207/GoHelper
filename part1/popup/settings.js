@@ -29,6 +29,9 @@ function clearSyncedData() {
     if (datePromt == dateObj.toDateString()) {
         chrome.storage.sync.clear(function() {
             alert('All data cleared from storage');
+            const newButtonTextarea = document.getElementById("newbuttontext");
+            newButtonTextarea.value = "";
+            getCustomButtons();
         });
     } else {
         console.log('Stopping operation');
@@ -51,6 +54,8 @@ function saveNewButton() {
             chrome.storage.sync.set({ [newButtonName]: userCreatedButtons }, function() {
                 console.log('Button saved:', userCreatedButtons);
             });
+
+            getCustomButtons();
         }
     }
 }
