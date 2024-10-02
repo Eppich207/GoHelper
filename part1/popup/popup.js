@@ -1,6 +1,7 @@
 console.log("popup.js loaded");
 
 
+
 function SimpleCopy() {
     const textEditor = document.getElementById("textEditor");
     const text = textEditor.value;
@@ -22,6 +23,7 @@ function initializePopup() {
 
     const textEditor = document.getElementById("textEditor");
 
+    scrapeOpenedByInput();
 
     const MDS = document.getElementById("MDS");
     if (MDS) {
@@ -146,6 +148,52 @@ function renderButtons(buttonsArray) {
 }
 
 
+function scrapeOpenedByInput() {
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        const activeTab = tabs[0];
+
+        // Inject content script to scrape 'opened_by_input' values
+        chrome.scripting.executeScript({
+            target: {tabId: activeTab.id},
+            function: scrapeOpenedByFromHTML // This function will run inside the active tab
+        }, (results) => {
+            if (chrome.runtime.lastError || !results || !results[0] || !results[0].result) {
+                console.error('Error scraping the page or no result found');
+                return;
+            }
+
+            const openedByValues = results[0].result;
+            displayOpenedByValues(openedByValues);
+        });
+    });
+}
+
+// Function that runs inside the active tab to scrape 'opened_by_input' values
+function scrapeOpenedByFromHTML() {
+    const values = [];
+    const openedByInputs = document.querySelectorAll('now-ufx-page [name="opened_by_input"]');
+    openedByInputs.forEach(input => {
+        const value = input.getAttribute('value');
+        if (value) {
+            values.push(value);
+        }
+    });
+    return values;
+}
+
+// Function to display the scraped values in the popup
+function displayOpenedByValues(values) {
+    const outputContainer = document.getElementById('openedByOutput');
+    outputContainer.innerHTML = ''; // Clear previous values
+
+    values.forEach(value => {
+        const p = document.createElement('p');
+        p.textContent = value;
+        outputContainer.appendChild(p);
+    });
+}
+
+
 
 document.addEventListener('DOMContentLoaded', (event) => {
 
@@ -170,4 +218,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 });
+
 
