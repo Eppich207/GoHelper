@@ -9,9 +9,8 @@ chrome.runtime.onMessage.addListener(
           console.error('Async: Could not copy text: ', err);
           sendResponse({success: false, error: err});
         });
-        return true; // Indicates you wish to send a response asynchronously
+        return true;
       }
     }
   );
-
-
+  

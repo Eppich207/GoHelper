@@ -11,7 +11,7 @@ background-color: #09509b;
 border: none;
 color: rgb(237, 237, 237);
 padding: 10px 10px;
-margin: 0px 4px;
+margin: 4px 4px;
 text-align: center;
 font-size: 14px;
 font-weight: bold;
@@ -23,7 +23,7 @@ background-color: #083a70;
 border: none;
 color: rgb(236, 236, 236);
 padding: 10px 10px;
-margin: 0px 4px;
+margin: 4px 4px;
 text-align: center;
 font-size: 14px;
 font-weight: bold;
@@ -196,7 +196,7 @@ display: inline;
     font-size: 14px;
     font-weight: bold;
 
-    }
+}
 
 .createButton{
 
@@ -222,4 +222,5 @@ display: inline;
     font-size: 14px;
     font-weight: bold;
 
-    }
+}
+
