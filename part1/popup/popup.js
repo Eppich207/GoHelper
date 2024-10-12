@@ -1,7 +1,3 @@
-console.log("popup.js loaded");
-
-
-
 function simpleCopy() {
     const textEditor = document.getElementById("textEditor");
     const text = textEditor.value;
@@ -12,7 +8,6 @@ function simpleCopy() {
 
 const CopyButtons = document.querySelectorAll('.copy-buttons');
     CopyButtons.forEach(button => {
-        console.log("click");
     button.addEventListener("click", simpleCopy);
 });
 
@@ -33,7 +28,6 @@ function getCustomButtonsPU() {
             }
 
             if (buttonsArray.length > 0) {
-                console.log("Retrieved custom buttons with customTag:", buttonsArray);
                 resolve(buttonsArray); 
             } else {
                 console.log("No custom buttons found with customTag");
@@ -67,7 +61,6 @@ function renderButtons(buttonsArray) {
         buttonsContainer.appendChild(newButton);
     });
 
-    console.log("Rendered buttons:", buttonsArray);
 }
 
 function displayOpenedByValues(values) {
@@ -80,8 +73,6 @@ function displayOpenedByValues(values) {
         outputContainer.appendChild(p);
     });
 }
-
-
 
 document.addEventListener('DOMContentLoaded', (event) => {
     
@@ -103,3 +94,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 });
+
+console.log("popup.js loaded");
