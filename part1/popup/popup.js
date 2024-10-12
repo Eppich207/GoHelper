@@ -30,7 +30,6 @@ function getCustomButtonsPU() {
             if (buttonsArray.length > 0) {
                 resolve(buttonsArray); 
             } else {
-                console.log("No custom buttons found with customTag");
                 resolve([]); 
             }
         });

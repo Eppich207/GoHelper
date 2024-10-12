@@ -17,9 +17,19 @@ function initializeSettings() {
         retrieveButton.addEventListener('click', getCustomButtons, false);
     }
 
+    const updateButton = document.getElementById("updateButton");
+    if (updateButton) {
+        updateButton.addEventListener('click', updateButton1, false);
+    }
+
     const deleteButton = document.getElementById("deleteButton");
     if (deleteButton) {
         deleteButton.addEventListener('click', clearSyncedData, false);
+    }
+
+    const deleteSelectedButton = document.getElementById("deleteSelectedButton");
+    if (deleteSelectedButton) {
+        deleteSelectedButton.addEventListener('click', deleteStoredButton, false);
     }
 }
 
@@ -44,16 +54,12 @@ function saveNewButton() {
     if (newButtonName !== null) {
         let newButtonText = prompt("Please enter the new button's text:");
         if (newButtonText !== null) {
-            console.log(newButtonText, "+" ,newButtonName, "created with success");
-
             let userCreatedButtons = {
                 Name: newButtonName,
                 Text: newButtonText,
                 customTag: 'buttonTag' 
             };
-
             chrome.storage.sync.set({ [newButtonName]: userCreatedButtons }, function() {
-                console.log('Button saved:', userCreatedButtons);
             });
 
             getCustomButtons();
@@ -61,6 +67,34 @@ function saveNewButton() {
     }
 }
 
+function deleteStoredButton() {
+    chrome.storage.sync.get(null, function(items) {
+        let customButtons = [];
+        for (let key in items) {
+            if (items.hasOwnProperty(key)) {
+                let item = items[key];
+                if (typeof item === 'object' && item !== null && 'customTag' in item) {
+                    customButtons.push(item);
+                }
+            }
+        }
+        
+        let userConfirmation = prompt("Are you sure to delete this button? y/n:");
+        if (userConfirmation != 'y') {
+            return;
+        }
+
+
+        const dropdown = document.getElementById("buttonDropdown");
+        const selectedButtonName = dropdown.value;  
+        chrome.storage.sync.remove(selectedButtonName, function() {
+            if (chrome.runtime.lastError) {
+                console.error("Error removing item: ", chrome.runtime.lastError);
+            }
+        });        
+        getCustomButtons();             
+    });
+}
 
 function getCustomButtons() {
     chrome.storage.sync.get(null, function(items) {
@@ -96,15 +130,40 @@ function getCustomButtons() {
             }
         });
 
-        if (customButtons.length > 0) {
-            console.log("Retrieved custom buttons with customTag:", customButtons);
-        } else {
-            console.log("No custom buttons found with customTag");
-        }
+       
     });
 }
 
+function updateButton1() {
 
+    chrome.storage.sync.get(null, function(items) {
+        let customButtons = [];
+        for (let key in items) {
+            if (items.hasOwnProperty(key)) {
+                let item = items[key];
+                if (typeof item === 'object' && item !== null && 'customTag' in item) {
+                    customButtons.push(item);
+                }
+            }
+        }
+
+        const dropdown = document.getElementById("buttonDropdown");
+        const selectedButtonName = dropdown.value;
+        const savedButton = customButtons.find(button => button.Name === selectedButtonName);
+        const savedButtonText = savedButton.Text
+        const newButtonTextarea = document.getElementById("newbuttontext");
+            if (savedButtonText !== newButtonTextarea.value) {
+                chrome.storage.sync.set({ [selectedButtonName]: { Name: selectedButtonName, Text: newButtonTextarea.value, customTag: 'buttonTag' } }, function() {
+                });
+                getCustomButtons(); 
+                alert('The button text was successfully updated.');
+            } else {
+                alert('The button text did not change. No update was made.');
+            }
+    });
+   
+    
+}
 
 function saveAgentName() {
     let agentFName = prompt("Please enter your name:");
@@ -162,8 +221,8 @@ function checkAgentName() {
         }
 
         if (FirstName.length > 0) {
-            console.log("Retrieved FN");
-        } else {
+        
+        } else { 
             saveAgentName();
         }
     });

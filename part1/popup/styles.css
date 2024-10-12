@@ -4,72 +4,65 @@ body {
     background-color: #f1f1f1dd;
 }
 
-
-
 .button-normal {
-background-color: #09509b;
-border: none;
-color: rgb(237, 237, 237);
-padding: 10px 10px;
-margin: 4px 4px;
-text-align: center;
-font-size: 14px;
-font-weight: bold;
+    background-color: #09509b;
+    border: none;
+    color: rgb(237, 237, 237);
+    padding: 10px 10px;
+    margin: 4px 4px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
 }
-
 
 .button-normal:hover {
-background-color: #083a70;
-border: none;
-color: rgb(236, 236, 236);
-padding: 10px 10px;
-margin: 4px 4px;
-text-align: center;
-font-size: 14px;
-font-weight: bold;
+    background-color: #083a70;
+    border: none;
+    color: rgb(236, 236, 236);
+    padding: 10px 10px;
+    margin: 4px 4px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
 }
-
 
 .button-inverted {
-background-color: rgb(255, 193, 100);
-border: none;
-color: #704508;
-padding: 10px 10px;
-margin: 5px 4px;
-text-align: center;
-font-size: 14px;
-font-weight: bold;
+    background-color: rgb(255, 193, 100);
+    border: none;
+    color: #704508;
+    padding: 10px 10px;
+    margin: 5px 4px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
 }
-
 
 .button-inverted:hover {
-background-color: rgb(255, 160, 70);
-border: none;
-color: #3e2004;
-padding: 10px 10px;
-margin: 5px 4px;
-text-align: center;
-font-size: 14px;
-font-weight: bold;
+    background-color: rgb(255, 160, 70);
+    border: none;
+    color: #3e2004;
+    padding: 10px 10px;
+    margin: 5px 4px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
 }
 
-
 .textbox {
-margin: 5px 5px;
-border: 2px 2px;
-background-color: rgb(248, 248, 248);
-border-radius: 4px;
-border-style: solid;
-border-width: 1px;
-border-color: #083a70;
-width: 300px;
-height: 100px;
-resize: none;
-font-family: Arial;
+    margin: 5px 5px;
+    border: 2px 2px;
+    background-color: rgb(248, 248, 248);
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #083a70;
+    width: 300px;
+    height: 100px;
+    resize: none;
+    font-family: Arial;
 }
 
 .textbox2 {
-    
     border: 2px 2px;
     background-color: rgb(248, 248, 248);
     border-radius: 4px;
@@ -95,28 +88,27 @@ font-family: Arial;
     font-family: Arial;
 }
 
-
 .background {
-background-color: rgb(234, 237, 243);
+    background-color: rgb(234, 237, 243);
 }
 
 .settings {
-width: 24px;
-height: 24px;
-background-image: url(/icons/gear.png);
-background-repeat: no-repeat;
-background-size: contain;
-background-position: center;
-border: none;
-transition: opacity 0.1s ease-in;
-display: inline;
-float: right;
-margin: 4px;
+    width: 24px;
+    height: 24px;
+    background-image: url(/icons/gear.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    border: none;
+    transition: opacity 0.1s ease-in;
+    display: inline;
+    float: right;
+    margin: 4px;
 }
 
 .header {
-width: 300px;
-display: inline;
+    width: 300px;
+    display: inline;
 }
 
 .headerdiv {
@@ -129,31 +121,23 @@ display: inline;
 }
 
 #narrow {
-
     width:  320px;
-
 }
 
 #wide {
-
     flex: 1;
-
 }
 
 #flexing {
-
     display: flex;
 }
 
 .vertical-buttons{
-
     margin-bottom: 5px;
     margin-bottom: 10px;
-
 }
 
 .greenButton{
-
     background-color: #00af3d;
     border: none;
     width: 10px; 
@@ -161,20 +145,16 @@ display: inline;
     margin-top: 5px;
     padding-top: 0;
     padding-bottom: 0;
-
 }
 
 .verticalCenter{
-
     position: relative;
     border: none;
     height: 119px;
     width: 10px;
-
 }
 
 .redButton{
-
     background-color: #870000;
     border: none;
     color: rgb(237, 237, 237);
@@ -183,10 +163,9 @@ display: inline;
     text-align: center;
     font-size: 14px;
     font-weight: bold;
-
 }
-.redButton:hover {
 
+.redButton:hover {
     background-color: #a80000;
     border: none;
     color: rgb(237, 237, 237);
@@ -195,11 +174,9 @@ display: inline;
     text-align: center;
     font-size: 14px;
     font-weight: bold;
-
 }
 
 .createButton{
-
     background-color: #006703;
     border: none;
     color: rgb(237, 237, 237);
@@ -208,11 +185,9 @@ display: inline;
     text-align: center;
     font-size: 14px;
     font-weight: bold;
-
 }
 
 .createButton:hover {
-
     background-color: #008204;
     border: none;
     color: rgb(237, 237, 237);
@@ -221,6 +196,5 @@ display: inline;
     text-align: center;
     font-size: 14px;
     font-weight: bold;
-
 }
 
