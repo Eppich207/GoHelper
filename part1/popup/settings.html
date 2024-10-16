@@ -14,16 +14,23 @@
             <br>
             <!-- Add remove buttons -->
             <div style="margin-top: 5px; margin-bottom: 5px;">
+                
+                <div style="margin-top: 5px; margin-bottom: 10px;"></div>
                 <button id="createNewButton" class="buttonName createButton">Create new button</Button>
-                <button id="retrieveButton" class="buttonRetrieve createButton">Refresh buttons and text area</button>
-                <button id="deleteButton" class="buttonDelete redButton">Clear all data</Button>
-                <button id="deleteSelectedButton" class="buttonSelectedDelete redButton">Delete selected button</Button>
                 <button id="updateButton" class="buttonUpdate createButton">Update a button</Button>
+                <button id="deleteButton" class="buttonDelete redButton">Clear all data</Button>
+                </div>
+                
                 <textarea class="textbox1" id="newbuttontext" rows="5" cols="50" spellcheck="false" title="newbuttontext"></textarea>
 
                 <select id="buttonDropdown">
                     <option value="">Select a button</option>
                 </select>
+
+                <div style="margin-top: 50px; margin-bottom: 5px;">
+                <button id="retrieveButton" class="buttonRetrieve createButton">Refresh buttons and text area</button>
+                <button id="deleteSelectedButton" class="buttonSelectedDelete redButton scaryTooltip">Delete selected button<span class="scaryTooltiptext">Scary!</span></Button>
+                </div>
                 
 
             </div>

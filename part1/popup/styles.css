@@ -83,7 +83,7 @@ body {
     border-width: 1px;
     border-color: #083a70;
     width: 300px;
-    height: 25px;
+    height: 75px;
     resize: none;
     font-family: Arial;
 }
@@ -174,6 +174,38 @@ body {
     text-align: center;
     font-size: 14px;
     font-weight: bold;
+}
+
+.redButton{
+    background-color: #870000;
+    border: none;
+    color: rgb(237, 237, 237);
+    padding: 10px 10px;
+    margin: 5px 5px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.scaryTooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.scaryTooltip .scaryTooltiptext {
+    visibility: hidden;
+    width: 80px;
+    background-color: rgb(255, 255, 255);
+    color: #cc0606;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+}
+
+.scaryTooltip:hover .scaryTooltiptext {
+    visibility: visible;
 }
 
 .createButton{
