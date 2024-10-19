@@ -34,7 +34,7 @@ function initializeSettings() {
 }
 
 function clearSyncedData() {
-    alert('Attention, you are about to enter a menu to clear data. This operation is useful if the addin is not running properly.');
+    alert('Attention, you are about clear all data. This operation is useful if the addin is not running properly. No restore is possible');
     const dateObj = new Date();
     let datePromt = prompt("Are you sure to clear all the buttons? Please type: " +'"'+ dateObj.toDateString() + '"');
     if (datePromt == dateObj.toDateString()) {

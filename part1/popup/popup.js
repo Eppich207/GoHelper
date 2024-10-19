@@ -1,4 +1,4 @@
-function simpleCopy() {
+function asyncCopy() {
     const textEditor = document.getElementById("textEditor");
     const text = textEditor.value;
     navigator.clipboard.writeText(text).then(function(err) {
@@ -8,7 +8,7 @@ function simpleCopy() {
 
 const CopyButtons = document.querySelectorAll('.copy-buttons');
     CopyButtons.forEach(button => {
-    button.addEventListener("click", simpleCopy);
+    button.addEventListener("click", asyncCopy);
 });
 
 
@@ -56,21 +56,10 @@ function renderButtons(buttonsArray) {
             const textEditor = document.getElementById("textEditor");
             textEditor.value = button.Text;
         });
-        newButton.addEventListener('dblclick', simpleCopy);
+        newButton.addEventListener('dblclick', asyncCopy);
         buttonsContainer.appendChild(newButton);
     });
 
-}
-
-function displayOpenedByValues(values) {
-    const outputContainer = document.getElementById('openedByOutput');
-    outputContainer.innerHTML = '';
-
-    values.forEach(value => {
-        const p = document.createElement('p');
-        p.textContent = value;
-        outputContainer.appendChild(p);
-    });
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -95,3 +84,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 console.log("popup.js loaded");
+
+
+function copyOnExit() {
+    const textEditor = document.getElementById("textEditor");
+    if (textEditor) {
+        textEditor.select();  
+        try {
+            document.execCommand("copy");
+        } catch (err) {
+            console.error('Failed to copy text: ', err);
+        }
+    } else {
+        console.error('Text editor not found!');
+    }
+}
+
+window.addEventListener('blur', copyOnExit);
