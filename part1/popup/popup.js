@@ -1,3 +1,5 @@
+let closeandcopy = false;
+
 function asyncCopy() {
     const textEditor = document.getElementById("textEditor");
     const text = textEditor.value;
@@ -66,6 +68,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
     
     getCustomButtonsPU();
     
+    checkCopyOnExit1(function(isChecked) {
+        closeandcopy = isChecked;
+    });
+
+
     const versionElement = document.getElementById("versionmanifest");
     if (versionElement) {
         
@@ -88,16 +95,27 @@ console.log("popup.js loaded");
 
 function copyOnExit() {
     const textEditor = document.getElementById("textEditor");
-    if (textEditor) {
-        textEditor.select();  
-        try {
-            document.execCommand("copy");
-        } catch (err) {
-            console.error('Failed to copy text: ', err);
+    if (closeandcopy == true) {
+        if (textEditor) {
+            textEditor.select();  
+            try {
+                document.execCommand("copy");
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+            }
         }
     } else {
-        console.error('Text editor not found!');
+        return false;
     }
 }
-
 window.addEventListener('blur', copyOnExit);
+
+
+function checkCopyOnExit1(callback) {
+    chrome.storage.sync.get('copyOnExit', function(result) {
+        const isChecked = result.copyOnExit || false;
+        callback(isChecked);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', checkCopyOnExit1);

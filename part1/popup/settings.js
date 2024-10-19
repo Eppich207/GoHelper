@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeSettings();
     getCustomButtons();
     checkAgentName()
+    checkCopyOnExit();
 });
 
 function initializeSettings() {
@@ -228,3 +229,24 @@ function checkAgentName() {
     });
 
 }
+
+function toggleCopyOnExit() {
+    const checkedStatus = document.getElementById('toggleCopyOnExit').checked;
+    chrome.storage.sync.set({ copyOnExit: checkedStatus }, function() {
+        console.log('copyOnExit state is set to:', checkedStatus);
+    });
+}
+document.getElementById('toggleCopyOnExit').addEventListener('change', toggleCopyOnExit);
+
+function checkCopyOnExit() {
+    chrome.storage.sync.get('copyOnExit', function(result) {
+        if (chrome.runtime.lastError) {
+            console.error(chrome.runtime.lastError.message);
+        } else {
+            const isChecked = result.copyOnExit || false; 
+            document.getElementById('toggleCopyOnExit').checked = isChecked;
+
+        }
+    });
+}
+document.addEventListener('DOMContentLoaded', checkCopyOnExit);
