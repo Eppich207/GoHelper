@@ -1,9 +1,7 @@
-[![Stargazers][stars-shield]][(https://github.com/Eppich207/GoHelper/stargazers)]
-[![Issues][issues-shield]][(https://github.com/Eppich207/GoHelper/issues)]
-[![LinkedIn][linkedin-shield]][https://www.linkedin.com/in/maarten-w-eppich-98b1bb168/?lipi=urn%3Ali%3Apage%3Ad_flagship3_feed%3BtEbIgMadQea1KzEqeZfmFQ%3D%3D]
 
-[![Stargazers][stars-shield]][[stars-url](https://github.com/Eppich207/GoHelper/stargazers)]
-[![Issues][issues-shield]][[issues-url](https://github.com/Eppich207/GoHelper/issues)]
+
+[![Stargazers][stars-shield]][[stars-url]]
+[![Issues][issues-shield]][[issues-url]]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
@@ -98,5 +96,5 @@ Readme template by othneildrew
 [license-shield]: https://img.shields.io/github/license/Eppich207/GoHelper.svg?style=for-the-badge
 [license-url]: https://github.com/Eppich207/GoHelper/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
+[linkedin-url]: https://www.linkedin.com/in/maarten-w-eppich-98b1bb168/
 
