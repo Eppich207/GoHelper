@@ -2,12 +2,16 @@
 [![Issues][issues-shield]][(https://github.com/Eppich207/GoHelper/issues)]
 [![LinkedIn][linkedin-shield]][https://www.linkedin.com/in/maarten-w-eppich-98b1bb168/?lipi=urn%3Ali%3Apage%3Ad_flagship3_feed%3BtEbIgMadQea1KzEqeZfmFQ%3D%3D]
 
+[![Stargazers][stars-shield]][[stars-url](https://github.com/Eppich207/GoHelper/stargazers)]
+[![Issues][issues-shield]][[issues-url](https://github.com/Eppich207/GoHelper/issues)]
+[![LinkedIn][linkedin-shield]][linkedin-url]
+
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/Eppich207/GoHelper/">
-    <img src="/icons/aa128.png" alt="Logo" width="80" height="80">
+    <img src="/part1/icons/aa128.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Go Helper</h3>
@@ -81,4 +85,18 @@ Readme template by othneildrew
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/Eppich207/GoHelper.svg?style=for-the-badge
+[contributors-url]: https://github.com/Eppich207/GoHelper/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Eppich207/GoHelper.svg?style=for-the-badge
+[forks-url]: https://github.com/Eppich207/GoHelper/network/members
+[stars-shield]: https://img.shields.io/github/stars/Eppich207/GoHelper.svg?style=for-the-badge
+[stars-url]: https://github.com/Eppich207/GoHelper/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Eppich207/GoHelper.svg?style=for-the-badge
+[issues-url]: https://github.com/Eppich207/GoHelper/issues
+[license-shield]: https://img.shields.io/github/license/Eppich207/GoHelper.svg?style=for-the-badge
+[license-url]: https://github.com/Eppich207/GoHelper/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/linkedin_username
 
