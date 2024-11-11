@@ -1,8 +1,8 @@
 
 
-[![Stargazers][stars-shield][stars-url]]
-[![Issues][issues-shield][issues-url]]
-[![LinkedIn][linkedin-shield][linkedin-url]]
+[![Stargazers][stars-shield]]
+[![Issues][issues-shield]]
+[![LinkedIn][linkedin-shield]]
 
 
 <!-- PROJECT LOGO -->
