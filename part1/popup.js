@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const settingsButton = document.getElementById('settings');
     if (settingsButton) {
         settingsButton.addEventListener('click', function() {
-            window.open('settings.html', '_blank');
+            window.open('popup/settings.html', '_blank');
         });
     }
 });
