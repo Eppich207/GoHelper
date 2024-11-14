@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     checkAgentName()
     checkCopyOnExit();
 });
-
+//E
 function initializeSettings() {
     const createNewButton = document.getElementById("createNewButton");
     if (createNewButton) {
@@ -32,8 +32,9 @@ function initializeSettings() {
     if (deleteSelectedButton) {
         deleteSelectedButton.addEventListener('click', deleteStoredButton, false);
     }
+    debuggercheck();
 }
-
+//P
 function clearSyncedData() {
     alert('Attention, you are about clear all data. This operation is useful if the addin is not running properly. No restore is possible');
     const dateObj = new Date();
@@ -49,7 +50,7 @@ function clearSyncedData() {
         console.log('Stopping operation');
     }
 }
-
+//P
 function saveNewButton() {
     let newButtonName = prompt("Please enter the new button's name:");
     if (newButtonName !== null) {
@@ -67,7 +68,62 @@ function saveNewButton() {
         }
     }
 }
+//I
+function debuggercheck() {
+    
+        chrome.storage.sync.get(null, function(items) {
+            let customButtons = [];
+            for (let key in items) {
+                if (items.hasOwnProperty(key)) {
+                    let item = items[key];
+                    if (typeof item === 'object' && item !== null && 'customTag' in item ) {
+                        customButtons.push(item);
+                    }
+                }
+            }
 
+            customButtons.forEach(button => {
+                let option = button.Text;
+                let optionvalue = button.Name;
+                let optioncategory = button.customTag;;   
+                console.log(option," + ", optionvalue," + ", optioncategory);
+            });
+        
+    });
+}
+//C
+
+const fileInput = document.getElementById('jsonFileInput');
+const inputDocument = document.getElementById('inputDocument');
+fileInput.addEventListener('change', handleFileUpload);
+
+function handleFileUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                const jsonData = JSON.parse(e.target.result);
+                console.log("Parsed JSON data:", jsonData);
+                if (jsonData.value) {
+                    console.log("jsonData.value:", jsonData.value);
+                } else {
+                    console.log("jsonData.value does not exist in the JSON file.");
+                }
+                jsonData.textContent = JSON.stringify(jsonData, null, 2);
+
+            } catch (error) {
+                console.log("Error parsing JSON:", error);
+                jsonData.textContent = "Invalid JSON file.";
+            }
+        };
+        reader.readAsText(file);
+    } else {
+        jsonData.textContent = "No file selected.";
+    }
+}
+
+//H
 function deleteStoredButton() {
     chrome.storage.sync.get(null, function(items) {
         let customButtons = [];
@@ -142,7 +198,7 @@ function updateButton1() {
         for (let key in items) {
             if (items.hasOwnProperty(key)) {
                 let item = items[key];
-                if (typeof item === 'object' && item !== null && 'customTag' in item) {
+                if (typeof item === 'object' && item !== null && 'customTag' || 'Button saved' in item) {
                     customButtons.push(item);
                 }
             }
