@@ -76,7 +76,7 @@ function debuggercheck() {
             for (let key in items) {
                 if (items.hasOwnProperty(key)) {
                     let item = items[key];
-                    if (typeof item === 'object' && item !== null && 'customTag' in item ) {
+                    if (typeof item === 'object' && item !== null && 'buttonTag' in item ) {
                         customButtons.push(item);
                     }
                 }

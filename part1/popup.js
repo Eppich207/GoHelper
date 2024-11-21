@@ -23,7 +23,11 @@ function getCustomButtonsPU() {
             for (let key in items) {
                 if (items.hasOwnProperty(key)) {
                     let item = items[key];
-                    if (typeof item === 'object' && item !== null && 'customTag' in item) {
+                    const dropdown = document.getElementById("buttonCatagories");
+                    const temp = dropdown.value;
+                    console.log(temp);
+                    if (typeof item === 'object' && item !== null && temp in item) {
+                        console.log(item);
                         buttonsArray.push(item); 
                     }
                 }
@@ -38,11 +42,40 @@ function getCustomButtonsPU() {
     });
 }
 
+function getButtonCatagories() {
+    chrome.storage.sync.get(null, function(items) {
+        
+        let catagoryItems = [];
+        for (let key in items) {
+            if (items.hasOwnProperty(key)) {
+                let item = items[key];
+                if (typeof item === 'object' && item !== null && 'customTag' in item) {
+                    catagoryItems.push(item.customTag); 
+                }
+            }
+        }
 
-getCustomButtonsPU().then(buttons => {
-    customButtons = buttons;
-    renderButtons(customButtons);
-});
+        const uniqueCatagoryItems = [...new Set(catagoryItems)];
+
+        const dropdown = document.getElementById("buttonCatagories");
+        dropdown.innerHTML = '<option value="">Select</option>';
+        
+        uniqueCatagoryItems.forEach(customTag => {
+            let option = document.createElement("option");
+            option.value = customTag;  
+            option.textContent = customTag; 
+            dropdown.appendChild(option);
+        });
+
+
+        dropdown.addEventListener('change', function() {
+            updateDisplayedButtons();
+        });
+    });
+}
+
+
+
 
 function renderButtons(buttonsArray) {
 
@@ -66,8 +99,10 @@ function renderButtons(buttonsArray) {
 
 document.addEventListener('DOMContentLoaded', (event) => {
     
-    getCustomButtonsPU();
-    
+
+    getButtonCatagories();
+    updateDisplayedButtons();
+
     checkCopyOnExit1(function(isChecked) {
         closeandcopy = isChecked;
     });
@@ -89,6 +124,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 });
+
+function updateDisplayedButtons() {
+    getCustomButtonsPU().then(buttons => {
+        customButtons = buttons;
+        renderButtons(customButtons);
+    });
+}
 
 console.log("popup.js loaded");
 
@@ -119,3 +161,6 @@ function checkCopyOnExit1(callback) {
 }
 
 document.addEventListener('DOMContentLoaded', checkCopyOnExit1);
+
+
+
