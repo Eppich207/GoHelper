@@ -47,18 +47,22 @@ let displayedButtons = [];
 function getButtonCatagories() {
     chrome.storage.sync.get(null, function(items) {
         
+        let categoryItems = [];
         for (let key in items) {
             if (items.hasOwnProperty(key)) {
                 let item = items[key];
                 if (typeof item === 'object' && item !== null && 'customTag' in item) {
+                    categoryItems.push(item.customTag); 
                 }
             }
         }
 
+        const uniqueCategoryItems = [...new Set(categoryItems)];
 
         const dropdown = document.getElementById("buttonCatagories");
         dropdown.innerHTML = '<option value="">Select</option>';
         
+        uniqueCategoryItems.forEach(customTag => {
             let option = document.createElement("option");
             option.value = customTag;  
             option.textContent = customTag; 
