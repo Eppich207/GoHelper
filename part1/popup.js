@@ -42,34 +42,43 @@ function getCustomButtonsPU() {
     });
 }
 
+let displayedButtons = []; 
+
 function getButtonCatagories() {
     chrome.storage.sync.get(null, function(items) {
         
-        let catagoryItems = [];
         for (let key in items) {
             if (items.hasOwnProperty(key)) {
                 let item = items[key];
                 if (typeof item === 'object' && item !== null && 'customTag' in item) {
-                    catagoryItems.push(item.customTag); 
                 }
             }
         }
 
-        const uniqueCatagoryItems = [...new Set(catagoryItems)];
 
         const dropdown = document.getElementById("buttonCatagories");
         dropdown.innerHTML = '<option value="">Select</option>';
         
-        uniqueCatagoryItems.forEach(customTag => {
             let option = document.createElement("option");
             option.value = customTag;  
             option.textContent = customTag; 
             dropdown.appendChild(option);
         });
 
-
         dropdown.addEventListener('change', function() {
-            updateDisplayedButtons();
+            const selectedTag = dropdown.value; 
+            displayedButtons = []; 
+            for (let key in items) {
+                if (items.hasOwnProperty(key)) {
+                    const item = items[key];
+                    if (typeof item === 'object' && item !== null && item.customTag === selectedTag) {
+                        displayedButtons.push(item); 
+                    }
+                }
+            }
+
+            console.log('Displayed buttons:', displayedButtons); 
+            updateDisplayedButtons(); 
         });
     });
 }
@@ -77,16 +86,15 @@ function getButtonCatagories() {
 
 
 
-function renderButtons(buttonsArray) {
-
+function renderButtons() {
     const buttonsContainer = document.getElementById("dynamicButtonsContainer");
-    buttonsContainer.innerHTML = '';
+    buttonsContainer.innerHTML = ''; 
 
-    buttonsArray.forEach(button => {
+    displayedButtons.forEach(button => { 
         let newButton = document.createElement("button");
-        newButton.textContent = button.Name; 
+        newButton.textContent = button.Name;
         newButton.classList.add("dynamic-button");
-        newButton.classList.add("button-normal"); 
+        newButton.classList.add("button-normal");
         newButton.addEventListener("click", function() {
             const textEditor = document.getElementById("textEditor");
             textEditor.value = button.Text;
@@ -94,8 +102,30 @@ function renderButtons(buttonsArray) {
         newButton.addEventListener('dblclick', asyncCopy);
         buttonsContainer.appendChild(newButton);
     });
-
 }
+
+function updateDisplayedButtons() {
+    const dropdown = document.getElementById("buttonCatagories");
+    const selectedCategory = dropdown.value;
+
+    if (!selectedCategory) {
+        console.warn('No category selected. Clearing displayed buttons.');
+        displayedButtons = [];
+        renderButtons(); 
+        return;
+    }
+
+    console.log('Selected category:', selectedCategory);
+
+    getCustomButtonsPU().then(buttons => {
+        displayedButtons = buttons.filter(button => button.customTag === selectedCategory);
+        console.log('Filtered buttons:', displayedButtons);
+        renderButtons(); 
+    }).catch(err => {
+        console.error('Error fetching or filtering buttons:', err);
+    });
+}
+
 
 document.addEventListener('DOMContentLoaded', (event) => {
     
