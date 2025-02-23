@@ -70,6 +70,7 @@ Project Link: [https://github.com/Eppich207/GoHelper](https://github.com/Eppich2
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 Readme template by othneildrew
+Trello clone inspired by @Ruben-Alvarez-Dev
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
