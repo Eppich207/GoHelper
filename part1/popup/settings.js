@@ -263,19 +263,21 @@ function updateButton1() {
         for (let key in items) {
             if (items.hasOwnProperty(key)) {
                 let item = items[key];
-                if (typeof item === 'object' && item !== null && 'customTag' || 'Button saved' in item) {
+                if (typeof item === 'object' && item !== null && 'customTag' in item) {
                     customButtons.push(item);
                 }
             }
         }
 
         const dropdown = document.getElementById("buttonDropdown");
+        const categoryDropdown = document.getElementById("buttonCatagories");
+        const savedButtonCategory = categoryDropdown.value;
         const selectedButtonName = dropdown.value;
         const savedButton = customButtons.find(button => button.Name === selectedButtonName);
-        const savedButtonText = savedButton.Text
+        const savedButtonText = savedButton.Text;
         const newButtonTextarea = document.getElementById("newbuttontext");
             if (savedButtonText !== newButtonTextarea.value) {
-                chrome.storage.sync.set({ [selectedButtonName]: { Name: selectedButtonName, Text: newButtonTextarea.value, customTag: 'buttonTag' } }, function() {
+                chrome.storage.sync.set({ [selectedButtonName]: { Name: selectedButtonName, Text: newButtonTextarea.value, customTag: savedButtonCategory } }, function() {
                 });
                 getCustomButtons(); 
                 alert('The button text was successfully updated.');
