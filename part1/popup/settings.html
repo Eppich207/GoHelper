@@ -26,40 +26,47 @@
           <span>Copy text to clipboard on exit</span>
         </label>
         <div class="sh-file-input">
-          <h5 style="width: 200px;">File upload/download</h5>
+          <h5 style="width: 200px; margin-bottom: 8px;">File upload/download</h5>
           <div>
-          <button id="downloadAllButtons" class="sh-createButton">Download data</button>
+          <button id="downloadAllButtons" class="sh-downloadButton">Download all buttons</button>
           </div>
-          <input type="file" id="jsonFileInput" accept=".json" style="width: 200px;">
+          <input type="file" id="jsonFileInput" accept=".json" style="width: 200px;" class="sh-fileImput">
         </div>
       </div>
 
       <div class="sh-right-panel">
         <div class="sh-upper-right">
-          <textarea class="sh-textbox1" id="newbuttontext" spellcheck="false" title="newbuttontext"></textarea>
-          <select id="buttonCatagories">
-            <option value="">Select category</option>
-          </select>
-          <select id="buttonDropdown">
-            <option value="">Select a category first</option>
-          </select>
-          <div>
-            <button id="updateButton" class="sh-createButton">Update a button</button>
-            <button id="createNewButton" class="sh-createButton">Create new button</button>
-            <button id="deleteSelectedButton" class="sh-redButton sh-scaryTooltip">
-                Delete selected button
-                <span class="sh-scaryTooltiptext">Scary!</span>
-            </button>
+          <div class="sh-upper-rightflexchild">
+            <textarea class="sh-textbox1" id="newbuttontext" spellcheck="false" title="newbuttontext"></textarea>
+            <select id="buttonCatagories">
+              <option value="">Select category</option>
+            </select>
+            <select id="buttonDropdown">
+              <option value="">Select a category first</option>
+            </select>
+            <div>
+              <button id="updateButton" class="sh-createButton">Update a button</button>
+              <button id="deleteSelectedButton" class="sh-redButton sh-scaryTooltip" style="margin-right: 40px;">
+                  Delete selected button
+                  <span class="sh-scaryTooltiptext">Scary!</span>
+              </button>
+              <button id="createNewButton" class="sh-createButton">Create new button</button>
             </div>
+          </div>
+          <div class="sh-upper-rightflexchild sh-trelloflexcontainer" style="border-top: 2px solid #6c6c6c;">
+            <link rel="stylesheet" href="trello.css">
+            <div id="board" class="board"></div>
+            <button id="add-list">+ Add List</button>
         </div>
         <div class="sh-lower-right">
-          <button id="deleteButton" class="sh-redButton">Clear all data</button>
-          <button id="retrieveButton" class="sh-createButton">Refresh buttons and text area</button>
+          <button id="retrieveButton" class="sh-createButton">Refresh display</button>
+          <button id="deleteButton" class="sh-redButton">Clear all addin data</button>
         </div>
       </div>
     </div>
     <script src="../popup.js"></script>
     <script src="../content.js"></script>
     <script src="settings.js"></script>
+    <script src="trello.js"></script>
   </body>
 </html>

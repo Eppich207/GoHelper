@@ -99,6 +99,9 @@ function renderButtons() {
         newButton.textContent = button.Name;
         newButton.classList.add("dynamic-button");
         newButton.classList.add("button-normal");
+        if (button.customColor) {
+            newButton.style.setProperty('background-color', button.customColor, 'important');
+        }
         newButton.addEventListener("click", function() {
             const textEditor = document.getElementById("textEditor");
             textEditor.value = button.Text;
@@ -107,6 +110,7 @@ function renderButtons() {
         buttonsContainer.appendChild(newButton);
     });
 }
+
 
 function updateDisplayedButtons() {
     const dropdown = document.getElementById("buttonCatagories");

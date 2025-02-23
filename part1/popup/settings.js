@@ -60,17 +60,21 @@ function clearSyncedData() {
 function saveNewButton() {
     let newButtonName = prompt("Please enter the new button's name:");
     if (newButtonName !== null) {
-        let newButtonText = prompt("Please enter the new button's text:");
-        if (newButtonText !== null) {
-            let userCreatedButtons = {
-                Name: newButtonName,
-                Text: newButtonText,
-                customTag: 'buttonTag' 
-            };
-            chrome.storage.sync.set({ [newButtonName]: userCreatedButtons }, function() {
-            });
+        let newCustomColor = prompt("Please enter the new button's color. Available colors: maroon, darkmagenta, teal, goldenrod, darkred, mediumblue, black, dimgray");
+        if (newCustomColor !== null) {
+            let newButtonText = prompt("Please enter the new button's text:");
+            if (newButtonText !== null) {
+                let userCreatedButtons = {
+                    Name: newButtonName,
+                    Text: newButtonText,
+                    customTag: 'Custom buttons',
+                    customColor: newCustomColor 
+                };
+                chrome.storage.sync.set({ [newButtonName]: userCreatedButtons }, function() {
+                });
 
-            getCustomButtons();
+                getCustomButtons();
+            }
         }
     }
 }
@@ -112,23 +116,22 @@ function fileUpload(event) {
                 const jsonData = JSON.parse(e.target.result);
                 console.log("Parsed JSON data:", jsonData);
 
-                // Iterate over each property in the JSON object.
                 Object.keys(jsonData).forEach(key => {
                     let buttonData = jsonData[key];
 
-                    // Ensure the property is an object and has the needed properties.
+                    
                     if (typeof buttonData === 'object' && buttonData !== null && buttonData.Name && buttonData.Text && buttonData.customTag) {
-                        // Create a new button object with an import tag instead of customTag.
                         let importedButton = {
                             Name: buttonData.Name,
                             Text: buttonData.Text,
-                            customTag: buttonData.customTag
+                            customTag: buttonData.customTag,
+                            customColor: buttonData.customColor
                         };
-
-                        // Save the imported button to Chrome storage.
                         chrome.storage.sync.set({ [buttonData.Name]: importedButton }, function() {
                             console.log(`Imported button: ${buttonData.Name}`);
                         });
+
+                        prompt("Import complete");
                     } else {
                         console.warn(`Skipping entry ${key}: Invalid button data`, buttonData);
                     }
@@ -327,7 +330,7 @@ function getAgentName() {
             console.alert("null");
         }
 
-        console.log('FirstName:', FirstName)
+
     });
 }
 
@@ -375,23 +378,20 @@ function checkCopyOnExit() {
 document.addEventListener('DOMContentLoaded', checkCopyOnExit);
 
 function getButtonsByCategory() {
-    // Get the selected category from the category dropdown.
     const categoryDropdown = document.getElementById("buttonCatagories");
-    const selectedCategory = categoryDropdown.value; // could be "buttonTag", "ImportTag", etc.
+    const selectedCategory = categoryDropdown.value; 
     let filteredButtons = [];
     
     chrome.storage.sync.get(null, function(items) {
-        // Loop through all items in chrome storage.
         for (let key in items) {
             if (items.hasOwnProperty(key)) {
                 let item = items[key];
                 if (typeof item === 'object' && item !== null) {
-                    // Check all properties (except Name/Text) that might indicate a tag.
                     for (let prop in item) {
                         if (prop !== "Name" && prop !== "Text" && prop.toLowerCase().includes("tag")) {
                             if (item[prop] === selectedCategory) {
                                 filteredButtons.push(item);
-                                break; // Found a matching tag, no need to check further.
+                                break;
                             }
                         }
                     }
@@ -399,7 +399,6 @@ function getButtonsByCategory() {
             }
         }
         
-        // Populate the button dropdown with the filtered buttons.
         const dropdown = document.getElementById("buttonDropdown");
         dropdown.innerHTML = '<option value="">Select a button</option>';
         
@@ -410,16 +409,12 @@ function getButtonsByCategory() {
             dropdown.appendChild(option);
         });
         
-        // Set up the change event for the button dropdown.
         dropdown.onchange = function() {
             const selectedButtonName = dropdown.value;
-            console.log("Selected button:", selectedButtonName);
             const selectedButton = filteredButtons.find(button => button.Name === selectedButtonName);
             const newButtonTextarea = document.getElementById("newbuttontext");
             newButtonTextarea.value = selectedButton ? selectedButton.Text : "";
-            // Optionally refresh other UI parts.
             getCustomButtons();
-            console.log("done onchange");
         };
     });
 }

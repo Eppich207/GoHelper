@@ -11,50 +11,47 @@
 
     <body class="body">
 
-        
-
-        <!--// Section 1: Header and version -->
         <section div class="headerdiv"> 
-
-            <h2 class="header">GO HELPER</h2>
-            <title>Go Helper</title>
-            <button class="settings" id="settings" title="settings"></button>
-            <div id="wide" class="settingsdiv">
-                <select id="buttonCatagories">
-                    <option value="">Select</option>
-                </select>
+            <div class="headerflexcontainer">
+                <div style="width: 200px;" class="headerflexchild">
+                    <h2 class="header leftMargin">GO HELPER</h2>
+                    <title>Go Helper</title>
+                    <div class="leftMargin bottomMargin">
+                    <p id="versionmanifest" class="paragraphHeader headerflexchild"> Version: </p>
+                    </div>
+                </div>
+                <div style="width: 40px;" class="headerflexchild">
+                    <button class="settings" id="settings" title="settings"></button>
+                </div>
+                <div id="wide" class="settingsdiv">
+                    <select id="buttonCatagories">
+                        <option value="">Select category</option>
+                    </select>
+                </div>
             </div>
-            <p id="versionmanifest" class="paragraphHeader"> Version: </p>
+        </section>
 
+        <section style="width: 400px;">
+            <div style="width: 320px;" >
+                <div id="dynamicButtonsContainer"></div>
+            </div>
         </section>
-        <section>
-            
-        </section>
-        <!--// Section 3: text box and copy-->
-        <section id="flexing">
-            <!--// Copy button left-->
+
+        <section id="flexing" class="leftMargin">
             <div class="verticalCenter">
             <button class="greenButton copy-buttons" title="copy">
             </button>
             </div>
-
-             <!--// Textbox-->
             <div class="container" id="narrow">
                 
                 <textarea class="textbox" id="textEditor" rows="5" cols="50" spellcheck="false" title="textbox"></textarea>   
 
             </div>
-            <!--// Side buttons-->
             
         </section>
 
-        <!--// Section 4: Dynamic buttons -->
-        <section style="width: 400px;">
-            <div style="width: 320px;" >
+        
 
-                <div id="dynamicButtonsContainer"></div>
-            </div>
-        </section>
         <div id="openedByOutput"></div>
 
         <script src="popup.js"></script>

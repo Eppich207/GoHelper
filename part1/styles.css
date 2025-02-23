@@ -2,28 +2,33 @@
 body {
     width: 400px;
     background-color: #f1f1f1dd;
+    margin:0;
+
 }
 
 .button-normal {
     background-color: #09509b;
     border: none;
-    color: rgb(237, 237, 237);
+    color: rgb(249, 249, 249);
     padding: 10px 10px;
     margin: 4px 4px;
     text-align: center;
     font-size: 14px;
     font-weight: bold;
+    border-radius: 3px;
+
 }
 
 .button-normal:hover {
     background-color: #083a70;
     border: none;
-    color: rgb(236, 236, 236);
+    color: rgb(205, 205, 205);
     padding: 10px 10px;
     margin: 4px 4px;
     text-align: center;
     font-size: 14px;
     font-weight: bold;
+    border-radius: 3px;
 }
 
 .button-inverted {
@@ -114,7 +119,18 @@ body {
 }
 
 .headerdiv {
+    width: 400px;
     margin-bottom: 10px;
+    border-bottom: 1px solid #b2b2b2;
+    background-color: #e9e9e9
+}
+
+.leftMargin {
+    margin-left: 8px;
+}
+
+.bottomMargin {
+    margin-bottom:8px;
 }
 
 .paragraphHeader {
@@ -151,6 +167,18 @@ body {
     margin-top: 5px;
     padding-top: 0;
     padding-bottom: 0;
+}
+
+.headerflexcontainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px; 
+}
+
+.headerflexchild {
+    flex: 1;
 }
 
 .verticalCenter{
