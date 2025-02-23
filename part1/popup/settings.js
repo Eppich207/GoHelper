@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     checkAgentName()
     checkCopyOnExit();
 });
-//E
+
 function initializeSettings() {
     const createNewButton = document.getElementById("createNewButton");
     if (createNewButton) {
@@ -32,9 +32,15 @@ function initializeSettings() {
     if (deleteSelectedButton) {
         deleteSelectedButton.addEventListener('click', deleteStoredButton, false);
     }
-    debuggercheck();
+
+    const downloadAllButtons = document.getElementById("downloadAllButtons");
+    if (downloadAllButtons) {
+        downloadAllButtons.addEventListener('click', fileDownload, false);
+    }
+    //debuggercheck();
+
 }
-//P
+
 function clearSyncedData() {
     alert('Attention, you are about clear all data. This operation is useful if the addin is not running properly. No restore is possible');
     const dateObj = new Date();
@@ -50,7 +56,7 @@ function clearSyncedData() {
         console.log('Stopping operation');
     }
 }
-//P
+
 function saveNewButton() {
     let newButtonName = prompt("Please enter the new button's name:");
     if (newButtonName !== null) {
@@ -68,7 +74,7 @@ function saveNewButton() {
         }
     }
 }
-//I
+
 function debuggercheck() {
     
         chrome.storage.sync.get(null, function(items) {
@@ -91,13 +97,13 @@ function debuggercheck() {
         
     });
 }
-//C
+
 
 const fileInput = document.getElementById('jsonFileInput');
 const inputDocument = document.getElementById('inputDocument');
-fileInput.addEventListener('change', handleFileUpload);
+fileInput.addEventListener('change', fileUpload);
 
-function handleFileUpload(event) {
+function fileUpload(event) {
     const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
@@ -105,25 +111,83 @@ function handleFileUpload(event) {
             try {
                 const jsonData = JSON.parse(e.target.result);
                 console.log("Parsed JSON data:", jsonData);
-                if (jsonData.value) {
-                    console.log("jsonData.value:", jsonData.value);
-                } else {
-                    console.log("jsonData.value does not exist in the JSON file.");
-                }
-                jsonData.textContent = JSON.stringify(jsonData, null, 2);
 
+                // Iterate over each property in the JSON object.
+                Object.keys(jsonData).forEach(key => {
+                    let buttonData = jsonData[key];
+
+                    // Ensure the property is an object and has the needed properties.
+                    if (typeof buttonData === 'object' && buttonData !== null && buttonData.Name && buttonData.Text && buttonData.customTag) {
+                        // Create a new button object with an import tag instead of customTag.
+                        let importedButton = {
+                            Name: buttonData.Name,
+                            Text: buttonData.Text,
+                            customTag: buttonData.customTag
+                        };
+
+                        // Save the imported button to Chrome storage.
+                        chrome.storage.sync.set({ [buttonData.Name]: importedButton }, function() {
+                            console.log(`Imported button: ${buttonData.Name}`);
+                        });
+                    } else {
+                        console.warn(`Skipping entry ${key}: Invalid button data`, buttonData);
+                    }
+                });
+                console.log("All valid buttons imported.");
             } catch (error) {
-                console.log("Error parsing JSON:", error);
-                jsonData.textContent = "Invalid JSON file.";
+                console.error("Error parsing JSON:", error);
             }
         };
         reader.readAsText(file);
     } else {
-        jsonData.textContent = "No file selected.";
+        console.warn("No file selected.");
     }
 }
 
-//H
+function fileDownload() {
+    chrome.storage.sync.get(null, function(items) {
+        
+        if (chrome.runtime.lastError) {
+            console.error("Error retrieving data:", chrome.runtime.lastError);
+            return;
+        }
+
+        if (Object.keys(items).length === 0) {
+            console.log("No data found in storage.");
+            alert("No data available to download.");
+            return;
+        }
+
+        try {
+
+            let buttonExportList = [];
+            for (let key in items) {
+            if (items.hasOwnProperty(key)) {
+                let item = items[key];
+                if (typeof item === 'object' && item !== null && 'customTag' in item) {
+                    buttonExportList.push(item);
+                }
+            }
+            }
+            const jsonData = JSON.stringify(buttonExportList, null, 2);
+
+            const blob = new Blob([jsonData], { type: "application/json" });
+
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = "custom_buttons.json";
+            document.body.appendChild(a);
+            a.click();
+
+            document.body.removeChild(a);
+            console.log("Data successfully downloaded.");
+
+        } catch (error) {
+            console.error("Error processing JSON data:", error);
+        }
+    });
+}
+
 function deleteStoredButton() {
     chrome.storage.sync.get(null, function(items) {
         let customButtons = [];
@@ -154,6 +218,7 @@ function deleteStoredButton() {
 }
 
 function getCustomButtons() {
+    return;
     chrome.storage.sync.get(null, function(items) {
         let customButtons = [];
         for (let key in items) {
@@ -306,3 +371,55 @@ function checkCopyOnExit() {
     });
 }
 document.addEventListener('DOMContentLoaded', checkCopyOnExit);
+
+function getButtonsByCategory() {
+    // Get the selected category from the category dropdown.
+    const categoryDropdown = document.getElementById("buttonCatagories");
+    const selectedCategory = categoryDropdown.value; // could be "buttonTag", "ImportTag", etc.
+    let filteredButtons = [];
+    
+    chrome.storage.sync.get(null, function(items) {
+        // Loop through all items in chrome storage.
+        for (let key in items) {
+            if (items.hasOwnProperty(key)) {
+                let item = items[key];
+                if (typeof item === 'object' && item !== null) {
+                    // Check all properties (except Name/Text) that might indicate a tag.
+                    for (let prop in item) {
+                        if (prop !== "Name" && prop !== "Text" && prop.toLowerCase().includes("tag")) {
+                            if (item[prop] === selectedCategory) {
+                                filteredButtons.push(item);
+                                break; // Found a matching tag, no need to check further.
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Populate the button dropdown with the filtered buttons.
+        const dropdown = document.getElementById("buttonDropdown");
+        dropdown.innerHTML = '<option value="">Select a button</option>';
+        
+        filteredButtons.forEach(button => {
+            let option = document.createElement("option");
+            option.value = button.Name;  
+            option.textContent = button.Name; 
+            dropdown.appendChild(option);
+        });
+        
+        // Set up the change event for the button dropdown.
+        dropdown.onchange = function() {
+            const selectedButtonName = dropdown.value;
+            console.log("Selected button:", selectedButtonName);
+            const selectedButton = filteredButtons.find(button => button.Name === selectedButtonName);
+            const newButtonTextarea = document.getElementById("newbuttontext");
+            newButtonTextarea.value = selectedButton ? selectedButton.Text : "";
+            // Optionally refresh other UI parts.
+            getCustomButtons();
+            console.log("done onchange");
+        };
+    });
+}
+document.getElementById("buttonCatagories").addEventListener("change", getButtonsByCategory);
+

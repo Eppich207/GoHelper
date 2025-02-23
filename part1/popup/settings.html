@@ -1,55 +1,65 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" name="viewport">
-        <link rel="stylesheet" type="text/css" href="../styles.css">
-        
-    </head>
-    <body class="background" style="width: 98%;">
-        
-        <!-- settings -->
-        <div class="container centeredMargin">
-            <h2 class="header" style="margin-left: 15px;">Go Helper</h2>
-            <h4 id="versionmanifest" style="margin-left: 15px;">Version: </h4>
-            <br>
-            <!-- Add remove buttons -->
-            <div style="margin-top: 5px; margin-bottom: 5px;">
-                
-                <div style="margin-top: 5px; margin-bottom: 10px;"></div>
-                <button id="createNewButton" class="buttonName createButton">Create new button</Button>
-                <button id="updateButton" class="buttonUpdate createButton">Update a button</Button>
-                <button id="deleteButton" class="buttonDelete redButton">Clear all data</Button>
-                </div>
-                
-                <textarea class="textbox1" id="newbuttontext" rows="5" cols="50" spellcheck="false" title="newbuttontext"></textarea>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Settings</title>
+    <!-- Link to the settings-specific CSS file -->
+    <link rel="stylesheet" type="text/css" href="settings.css">
+  </head>
+  <body id="settings-page">
+    <!-- Top header/banner -->
+    <div class="sh-header-banner">
+      <div class="sh-header-title">
+        <h2>Go Helper</h2>
+      </div>
+      <div class="sh-header-version" id="versionmanifest">
+        <h4>Version:</h4>
+      </div>
+    </div>
 
-                <select id="buttonDropdown">
-                    <option value="">Select a button</option>
-                </select>
-
-                <div style="margin-top: 50px; margin-bottom: 5px;">
-                <button id="retrieveButton" class="buttonRetrieve createButton">Refresh buttons and text area</button>
-                <button id="deleteSelectedButton" class="buttonSelectedDelete redButton scaryTooltip">Delete selected button<span class="scaryTooltiptext">Scary!</span></Button>
-                </div>
-
-                <div style="display: flex; width: 32%;">
-                <input class="switch #narrow60" type="checkbox" style="margin-top: 12px;" id="toggleCopyOnExit">
-                
-                <div class="#wide" style="margin-left: 10px; margin-bottom: 5px; text-align: center;"><h3>Copy text to clipboard when addin closes</h2></div>
-                </div>
-                
-                <div>
-                    <input type="file" id="jsonFileInput" accept=".json" s>
-                    <pre id="inputDocument"></pre>
-                </div>
-                
-            </div>
-            
-            
+    <div class="sh-main-content">
+      <div class="sh-left-panel">
+        <h3>Settings</h3>
+        <label class="sh-settings-label">
+          <input class="sh-switch" type="checkbox" id="toggleCopyOnExit">
+          <span>Copy text to clipboard on exit</span>
+        </label>
+        <div class="sh-file-input">
+          <h5 style="width: 200px;">File upload/download</h5>
+          <div>
+          <button id="downloadAllButtons" class="sh-createButton">Download data</button>
+          </div>
+          <input type="file" id="jsonFileInput" accept=".json" style="width: 200px;">
         </div>
-        
-        <script src="../popup.js"></script>
-        <script src="../content.js"></script>
-        <script src="settings.js"></script>
-    </body>
+      </div>
+
+      <div class="sh-right-panel">
+        <div class="sh-upper-right">
+          <textarea class="sh-textbox1" id="newbuttontext" spellcheck="false" title="newbuttontext"></textarea>
+          <select id="buttonCatagories">
+            <option value="">Select category</option>
+          </select>
+          <select id="buttonDropdown">
+            <option value="">Select a category first</option>
+          </select>
+          <div>
+            <button id="updateButton" class="sh-createButton">Update a button</button>
+            <button id="createNewButton" class="sh-createButton">Create new button</button>
+            <button id="deleteSelectedButton" class="sh-redButton sh-scaryTooltip">
+                Delete selected button
+                <span class="sh-scaryTooltiptext">Scary!</span>
+            </button>
+            </div>
+        </div>
+        <div class="sh-lower-right">
+          <button id="deleteButton" class="sh-redButton">Clear all data</button>
+          <button id="retrieveButton" class="sh-createButton">Refresh buttons and text area</button>
+        </div>
+      </div>
+    </div>
+    <script src="../popup.js"></script>
+    <script src="../content.js"></script>
+    <script src="settings.js"></script>
+  </body>
 </html>

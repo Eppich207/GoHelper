@@ -91,7 +91,9 @@ body {
 .background {
     background-color: rgb(234, 237, 243);
 }
-
+.settingsdiv{
+    float: right;
+}
 .settings {
     width: 24px;
     height: 24px;
@@ -102,7 +104,7 @@ body {
     border: none;
     transition: opacity 0.1s ease-in;
     display: inline;
-    float: right;
+    margin-left: 8px;
     margin: 4px;
 }
 
@@ -142,7 +144,7 @@ body {
 }
 
 .greenButton{
-    background-color: #00af3d;
+    background-color: #017105;
     border: none;
     width: 10px; 
     height: 206px;
@@ -239,7 +241,6 @@ body {
 
 }
 
-/* By Yaya12085 */ 
 .switch {
     position: relative;
     height: 1.5rem;

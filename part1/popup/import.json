@@ -1,19 +1,46 @@
 {
-    "import": [
-        {
-            "Name": "Molecule Man",
-            "Text": "newButtonText",
-            "customTag": "buttonTag"
-        },
-        {
-            "Name": "Molecule Man1",
-            "Text": "newButtonText1",
-            "customTag": "buttonTag"
-        },
-        {
-            "Name": "Molecule Man2",
-            "Text": "newButtonText2",
-            "customTag": "buttonTag"
-        }
-    ]
-}
+    "Maarten": {
+      "FirstName": "FirstName",
+      "Name": "Maarten"
+    },
+    "aaa": {
+      "Name": "aaa",
+      "Text": "aaa",
+      "customTag": "importedTag"
+    },
+    "aaq": {
+      "Name": "aaq",
+      "Text": "qweq",
+      "customTag": "importedTag"
+    },
+    "asfas": {
+      "Name": "asfas",
+      "Text": "waefeawawedgvgeaw",
+      "customTag": "importedTag"
+    },
+    "sdavdav ": {
+      "Name": "sdavdav ",
+      "Text": "dva zvd dszvbadvb ad vazsv a \\adv  vda ",
+      "customTag": "importedTag"
+    },
+    "sdvsdva": {
+      "Name": "sdvsdva",
+      "Text": "davgsdwbadsv zbdz vb",
+      "customTag": "importedTag"
+    },
+    "wqff": {
+      "Name": "wqff",
+      "Text": "wqfafeaswdafaqef",
+      "customTag": "importedTag"
+    },
+    "1234": {
+      "Name": "111222",
+      "Text": "wqfafeaswdafaqef",
+      "customTag": "importedTag"
+    },
+    "12345": {
+      "Name": "111222333",
+      "Text": "wqfafeaswdafaqefaaaaa11111",
+      "customTag": "GlobalTag"
+    }
+  }
