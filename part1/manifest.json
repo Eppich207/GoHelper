@@ -1,7 +1,7 @@
 {
   "name": "Go Helper",
 
-  "version": "0.5.3",
+  "version": "0.5.4",
 
   "manifest_version": 3,
   "description": "",
@@ -16,9 +16,6 @@
       "default_popup": "popup.html",
       "default_icon": "icons/aa16.png",
       "default_title": "Go Helper"
-  },
-  "background": {
-    "service_worker": "background.js"
   },
   "content_scripts": [
   {

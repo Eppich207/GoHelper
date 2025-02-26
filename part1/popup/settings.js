@@ -1,8 +1,5 @@
-
-
 document.addEventListener('DOMContentLoaded', function() {
     initializeSettings();
-    getCustomButtons();
     checkAgentName()
     checkCopyOnExit();
 });
@@ -37,7 +34,6 @@ function initializeSettings() {
     if (downloadAllButtons) {
         downloadAllButtons.addEventListener('click', fileDownload, false);
     }
-    //debuggercheck();
 
 }
 
@@ -73,33 +69,10 @@ function saveNewButton() {
                 chrome.storage.sync.set({ [newButtonName]: userCreatedButtons }, function() {
                 });
 
-                getCustomButtons();
+
             }
         }
     }
-}
-
-function debuggercheck() {
-    
-        chrome.storage.sync.get(null, function(items) {
-            let customButtons = [];
-            for (let key in items) {
-                if (items.hasOwnProperty(key)) {
-                    let item = items[key];
-                    if (typeof item === 'object' && item !== null && 'buttonTag' in item ) {
-                        customButtons.push(item);
-                    }
-                }
-            }
-
-            customButtons.forEach(button => {
-                let option = button.Text;
-                let optionvalue = button.Name;
-                let optioncategory = button.customTag;;   
-                console.log(option," + ", optionvalue," + ", optioncategory);
-            });
-        
-    });
 }
 
 
@@ -114,7 +87,6 @@ function fileUpload(event) {
         reader.onload = function(e) {
             try {
                 const jsonData = JSON.parse(e.target.result);
-                console.log("Parsed JSON data:", jsonData);
 
                 Object.keys(jsonData).forEach(key => {
                     let buttonData = jsonData[key];
@@ -131,7 +103,6 @@ function fileUpload(event) {
                             console.log(`Imported button: ${buttonData.Name}`);
                         });
 
-                        prompt("Import complete");
                     } else {
                         console.warn(`Skipping entry ${key}: Invalid button data`, buttonData);
                     }
@@ -142,6 +113,7 @@ function fileUpload(event) {
             }
         };
         reader.readAsText(file);
+        alert("Import complete");
     } else {
         console.warn("No file selected.");
     }
@@ -216,46 +188,6 @@ function deleteStoredButton() {
                 console.error("Error removing item: ", chrome.runtime.lastError);
             }
         });        
-        getCustomButtons();             
-    });
-}
-
-function getCustomButtons() {
-    return;
-    chrome.storage.sync.get(null, function(items) {
-        let customButtons = [];
-        for (let key in items) {
-            if (items.hasOwnProperty(key)) {
-                let item = items[key];
-                if (typeof item === 'object' && item !== null && 'customTag' in item) {
-                    customButtons.push(item);
-                }
-            }
-        }
-
-        const dropdown = document.getElementById("buttonDropdown");
-        dropdown.innerHTML = '<option value="">Select a button</option>';
-
-        customButtons.forEach(button => {
-            let option = document.createElement("option");
-            option.value = button.Name;  
-            option.textContent = button.Name; 
-            dropdown.appendChild(option);
-        });
-
-       
-        dropdown.addEventListener('change', function() {
-            const selectedButtonName = dropdown.value;
-            const selectedButton = customButtons.find(button => button.Name === selectedButtonName);
-            const newButtonTextarea = document.getElementById("newbuttontext");
-            if (selectedButton) {
-                newButtonTextarea.value = selectedButton.Text; 
-            } else {
-                newButtonTextarea.value = ""; 
-            }
-        });
-
-       
     });
 }
 
@@ -420,3 +352,40 @@ function getButtonsByCategory() {
 }
 document.getElementById("buttonCatagories").addEventListener("change", getButtonsByCategory);
 
+function getCustomButtons() {
+    chrome.storage.sync.get(null, function(items) {
+        let customButtons = [];
+        for (let key in items) {
+            if (items.hasOwnProperty(key)) {
+                let item = items[key];
+                if (typeof item === 'object' && item !== null && 'customTag' in item) {
+                    customButtons.push(item);
+                }
+            }
+        }
+
+        const dropdown = document.getElementById("buttonDropdown");
+        dropdown.innerHTML = '<option value="">Select a button</option>';
+
+        customButtons.forEach(button => {
+            let option = document.createElement("option");
+            option.value = button.Name;  
+            option.textContent = button.Name; 
+            dropdown.appendChild(option);
+        });
+
+       
+        dropdown.addEventListener('change', function() {
+            const selectedButtonName = dropdown.value;
+            const selectedButton = customButtons.find(button => button.Name === selectedButtonName);
+            const newButtonTextarea = document.getElementById("newbuttontext");
+            if (selectedButton) {
+                newButtonTextarea.value = selectedButton.Text; 
+            } else {
+                newButtonTextarea.value = ""; 
+            }
+        });
+
+       
+    });
+}
