@@ -223,7 +223,7 @@ function updateButton1() {
         const selectedColor = colorSelector.value;
         
 
-            if (savedButtonText !== newButtonTextarea.value) {
+            if (savedButtonText !== newButtonTextarea.value || savedButton.customColor !== selectedColor) {
                 chrome.storage.sync.set({ [selectedButtonName]: { Name: selectedButtonName, Text: newButtonTextarea.value, customTag: savedButtonCategory, customColor: selectedColor || savedButton.customColor} }, function() {
                 });
                 getCustomButtons(); 
