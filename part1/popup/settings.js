@@ -37,6 +37,15 @@ function initializeSettings() {
 
 }
 
+function updateColorSelector(selectedButton) {
+    const colorSelector = document.getElementById("colorSelector");
+    if (selectedButton && selectedButton.customColor) {
+        colorSelector.value = selectedButton.customColor;
+    } else {
+        colorSelector.value = "";
+    }
+}
+
 function clearSyncedData() {
     alert('Attention, you are about clear all data. This operation is useful if the addin is not running properly. No restore is possible');
     const dateObj = new Date();
@@ -56,7 +65,11 @@ function clearSyncedData() {
 function saveNewButton() {
     let newButtonName = prompt("Please enter the new button's name:");
     if (newButtonName !== null) {
-        let newCustomColor = prompt("Please enter the new button's color. Available colors: maroon, darkmagenta, teal, goldenrod, darkred, mediumblue, black, dimgray");
+        const colorSelector = document.getElementById("colorSelector");
+        let newCustomColor = colorSelector.value;
+        if (!newCustomColor) {
+            newCustomColor = prompt("Please enter the new button's color. Available colors: maroon, darkmagenta, teal, goldenrod, darkred, mediumblue, black, dimgray");
+        }
         if (newCustomColor !== null) {
             let newButtonText = prompt("Please enter the new button's text:");
             if (newButtonText !== null) {
@@ -67,14 +80,13 @@ function saveNewButton() {
                     customColor: newCustomColor 
                 };
                 chrome.storage.sync.set({ [newButtonName]: userCreatedButtons }, function() {
+                    alert("Button created successfully!");
+                    getCustomButtons();
                 });
-
-
             }
         }
     }
 }
-
 
 const fileInput = document.getElementById('jsonFileInput');
 const inputDocument = document.getElementById('inputDocument');
@@ -107,7 +119,6 @@ function fileUpload(event) {
                         console.warn(`Skipping entry ${key}: Invalid button data`, buttonData);
                     }
                 });
-                console.log("All valid buttons imported.");
             } catch (error) {
                 console.error("Error parsing JSON:", error);
             }
@@ -128,7 +139,6 @@ function fileDownload() {
         }
 
         if (Object.keys(items).length === 0) {
-            console.log("No data found in storage.");
             alert("No data available to download.");
             return;
         }
@@ -155,7 +165,6 @@ function fileDownload() {
             a.click();
 
             document.body.removeChild(a);
-            console.log("Data successfully downloaded.");
 
         } catch (error) {
             console.error("Error processing JSON data:", error);
@@ -211,8 +220,11 @@ function updateButton1() {
         const savedButton = customButtons.find(button => button.Name === selectedButtonName);
         const savedButtonText = savedButton.Text;
         const newButtonTextarea = document.getElementById("newbuttontext");
+        const selectedColor = colorSelector.value;
+        
+
             if (savedButtonText !== newButtonTextarea.value) {
-                chrome.storage.sync.set({ [selectedButtonName]: { Name: selectedButtonName, Text: newButtonTextarea.value, customTag: savedButtonCategory } }, function() {
+                chrome.storage.sync.set({ [selectedButtonName]: { Name: selectedButtonName, Text: newButtonTextarea.value, customTag: savedButtonCategory, customColor: selectedColor || savedButton.customColor} }, function() {
                 });
                 getCustomButtons(); 
                 alert('The button text was successfully updated.');
@@ -236,9 +248,7 @@ function saveAgentName() {
                 FirstName: 'FirstName' 
             };
 
-            chrome.storage.sync.set({ [agentFName]: agentName }, function() {
-                console.log('Button saved:', agentName);
-            });
+            chrome.storage.sync.set({ [agentFName]: agentName });
         
     }
     checkAgentName();
@@ -257,9 +267,8 @@ function getAgentName() {
         }
 
         if (FirstName.length > 0) {
-            console.log("Retrieved FN");
         } else {
-            console.alert("null");
+            console.alert("no name found");
         }
 
 
@@ -380,9 +389,11 @@ function getCustomButtons() {
             const selectedButton = customButtons.find(button => button.Name === selectedButtonName);
             const newButtonTextarea = document.getElementById("newbuttontext");
             if (selectedButton) {
-                newButtonTextarea.value = selectedButton.Text; 
+                newButtonTextarea.value = selectedButton.Text;
+                updateColorSelector(selectedButton); 
             } else {
-                newButtonTextarea.value = ""; 
+                newButtonTextarea.value = "";
+                updateColorSelector(null); 
             }
         });
 

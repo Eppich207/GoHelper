@@ -212,3 +212,27 @@ body#settings-page {
   .sh-trelloflexchild{
     flex: 1;
   }
+
+  .sh-color-selector {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 2px solid #083a70;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    box-sizing: border-box;
+  }
+  
+  .sh-color-selector option {
+    padding: 8px;
+  }
+  
+  .sh-color-preview {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+    border-radius: 3px;
+  }
