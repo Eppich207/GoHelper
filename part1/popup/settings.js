@@ -215,6 +215,7 @@ function updateButton1() {
 
         const dropdown = document.getElementById("buttonDropdown");
         const categoryDropdown = document.getElementById("buttonCatagories");
+        const colorSelector = document.getElementById("colorSelector");
         const savedButtonCategory = categoryDropdown.value;
         const selectedButtonName = dropdown.value;
         const savedButton = customButtons.find(button => button.Name === selectedButtonName);
