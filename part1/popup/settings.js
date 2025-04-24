@@ -219,6 +219,7 @@ function updateButton1() {
         const savedButtonCategory = categoryDropdown.value;
         const selectedButtonName = dropdown.value;
         const savedButton = customButtons.find(button => button.Name === selectedButtonName);
+        
         const savedButtonText = savedButton.Text;
         const newButtonTextarea = document.getElementById("newbuttontext");
         const selectedColor = colorSelector.value;
@@ -227,7 +228,7 @@ function updateButton1() {
             if (savedButtonText !== newButtonTextarea.value || savedButton.customColor !== selectedColor) {
                 chrome.storage.sync.set({ [selectedButtonName]: { Name: selectedButtonName, Text: newButtonTextarea.value, customTag: savedButtonCategory, customColor: selectedColor || savedButton.customColor} }, function() {
                 });
-                getCustomButtons(); 
+                getCustomButtons(selectedButtonName); 
                 alert('The button text was successfully updated.');
             } else {
                 alert('The button text did not change. No update was made.');
@@ -375,7 +376,10 @@ function getCustomButtons() {
         }
 
         const dropdown = document.getElementById("buttonDropdown");
+        const currentSelection = selectionToPreserve || dropdown.value;
+
         dropdown.innerHTML = '<option value="">Select a button</option>';
+        
 
         customButtons.forEach(button => {
             let option = document.createElement("option");
@@ -384,20 +388,27 @@ function getCustomButtons() {
             dropdown.appendChild(option);
         });
 
+        if (currentSelection) {
+            dropdown.value = currentSelection;
+        }
        
-        dropdown.addEventListener('change', function() {
-            const selectedButtonName = dropdown.value;
-            const selectedButton = customButtons.find(button => button.Name === selectedButtonName);
-            const newButtonTextarea = document.getElementById("newbuttontext");
-            if (selectedButton) {
-                newButtonTextarea.value = selectedButton.Text;
-                updateColorSelector(selectedButton); 
-            } else {
-                newButtonTextarea.value = "";
-                updateColorSelector(null); 
-            }
-        });
-
-       
+        if (!dropdown.hasChangeListener) {
+            dropdown.addEventListener('change', function() {
+                const selectedButtonName = dropdown.value;
+                if (!selectedButtonName) return;
+                
+                const selectedButton = customButtons.find(button => button.Name === selectedButtonName);
+                const newButtonTextarea = document.getElementById("newbuttontext");
+                
+                if (selectedButton) {
+                    newButtonTextarea.value = selectedButton.Text;
+                    updateColorSelector(selectedButton);
+                } else {
+                    newButtonTextarea.value = "";
+                    updateColorSelector(null);
+                }
+            });
+            dropdown.hasChangeListener = true;
+        }
     });
 }
