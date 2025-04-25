@@ -20,15 +20,20 @@
 
     <div class="sh-main-content">
       <div class="sh-left-panel">
-        <h3>Settings</h3>
+        <h3 class="ST1">Settings</h3>
         <label class="sh-settings-label">
           <input class="sh-switch" type="checkbox" id="toggleCopyOnExit">
-          <span>Copy text to clipboard on exit</span>
+          <span class="ST2 sh-left-switchtext">Copy text to clipboard on exit</span>
         </label>
+        <h4 class="ST12 h3settings">Language</h3>
+        <select name="languages" id="langs" class="langs sh-left-panel-dropdown">
+          <option value="en" language="english" class="activeLang">English</option>
+          <option value="es" language="spanish">Español</option>
+        </select>
         <div class="sh-file-input">
-          <h5 style="width: 200px; margin-bottom: 8px;">File upload/download</h5>
+          <h5 style="width: 200px; margin-bottom: 8px;" class="ST3">File upload/download</h5>
           <div>
-          <button id="downloadAllButtons" class="sh-downloadButton">Download all buttons</button>
+          <button id="downloadAllButtons" class="sh-downloadButton ST4">Download all buttons</button>
           </div>
           <input type="file" id="jsonFileInput" accept=".json" style="width: 200px;" class="sh-fileImput">
         </div>
@@ -39,14 +44,13 @@
           <div class="sh-upper-rightflexchild">
             <textarea class="sh-textbox1" id="newbuttontext" spellcheck="false" title="newbuttontext"></textarea>
             <select id="buttonCatagories">
-              <option value="">Select category</option>
+              <option value="" class="ST5">Select category</option>
             </select>
             <select id="buttonDropdown">
-              <option value="">Select a category first</option>
+              <option value="" class="ST6">Select a category first</option>
             </select>
             <select id="colorSelector" class="sh-color-selector">
-              <option value="">Select color</option>
-              <option value="maroon" style="background-color: maroon; color: white;">maroon</option>
+              <option value="" class="ST7">Select color</option>
               <option value="darkmagenta" style="background-color: darkmagenta; color: white;">dark magenta</option>
               <option value="teal" style="background-color: teal; color: white;">Teal</option>
               <option value="goldenrod" style="background-color: goldenrod; color: white;">goldenrod</option>
@@ -56,12 +60,13 @@
               <option value="dimgray" style="background-color: dimgray; color: white;">dim gray</option>
             </select>
             <div>
-              <button id="updateButton" class="sh-createButton">Update a button</button>
-              <button id="deleteSelectedButton" class="sh-redButton sh-scaryTooltip" style="margin-right: 40px;">
+              <button id="updateButton" class="sh-createButton ST8">Update a button</button>
+              <button id="createNewButton" class="sh-createButton ST11">Create new button</button>
+              <button id="deleteSelectedButton" class="sh-redButton sh-scaryTooltip ST9" style="margin-left: 40px;">
                   Delete selected button
-                  <span class="sh-scaryTooltiptext">Scary!</span>
+                  <span class="sh-scaryTooltiptext ST10">Scary!</span>
               </button>
-              <button id="createNewButton" class="sh-createButton">Create new button</button>
+              
             </div>
           </div>
           <div class="sh-upper-rightflexchild sh-trelloflexcontainer" style="border-top: 2px solid #6c6c6c;">
@@ -70,8 +75,8 @@
             <button id="add-list">+ Add List</button>
         </div>
         <div class="sh-lower-right">
-          <button id="retrieveButton" class="sh-createButton">Refresh display</button>
-          <button id="deleteButton" class="sh-redButton">Clear all addin data</button>
+          <button id="retrieveButton" class="sh-createButton ST13">Refresh display</button>
+          <button id="deleteButton" class="sh-redButton ST14">Clear all addin data</button>
         </div>
       </div>
     </div>
@@ -79,5 +84,6 @@
     <script src="../content.js"></script>
     <script src="settings.js"></script>
     <script src="trello.js"></script>
+    <script src="translations.js"></script>
   </body>
 </html>

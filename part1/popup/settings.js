@@ -68,7 +68,7 @@ function saveNewButton() {
         const colorSelector = document.getElementById("colorSelector");
         let newCustomColor = colorSelector.value;
         if (!newCustomColor) {
-            newCustomColor = prompt("Please enter the new button's color. Available colors: maroon, darkmagenta, teal, goldenrod, darkred, mediumblue, black, dimgray");
+            newCustomColor = prompt("Please enter the new button's color. Available colors: darkmagenta, teal, goldenrod, darkred, mediumblue, black, dimgray. Please type the color as presented");
         }
         if (newCustomColor !== null) {
             let newButtonText = prompt("Please enter the new button's text:");

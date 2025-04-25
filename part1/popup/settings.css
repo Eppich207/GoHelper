@@ -40,9 +40,15 @@ body#settings-page {
     position: relative;
     height: 100vh;
   }
-  .sh-left-panel.closed {
-    transform: translateX(-100%);
+
+  .sh-left-panel-dropdown {
+    border: 2px solid #083a70;
+    border-radius: 3px;
+    background-color: #f8f8f8;
+    box-sizing: border-box;
+    width: 100%;	
   }
+
   
   .sh-right-panel {
     flex: 1;
@@ -235,4 +241,12 @@ body#settings-page {
     border: 1px solid #ccc;
     vertical-align: middle;
     border-radius: 3px;
+  }
+
+  .sh-left-switchtext {
+    padding-left: 5px;
+  }
+
+  .h3settings {
+    margin-bottom: 1px;
   }
