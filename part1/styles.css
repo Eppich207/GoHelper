@@ -7,7 +7,7 @@ body {
 }
 
 .button-normal {
-    background-color: #09509b;
+    background-color: mediumblue;
     border: none;
     color: rgb(249, 249, 249);
     padding: 10px 10px;
@@ -20,7 +20,8 @@ body {
 }
 
 .button-normal:hover {
-    background-color: #083a70;
+    font-size-adjust: 0.6;
+    size: fixed;
     border: none;
     color: rgb(205, 205, 205);
     padding: 10px 10px;
