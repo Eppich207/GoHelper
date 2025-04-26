@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeSettings();
     checkAgentName()
     checkCopyOnExit();
+    checkManifestVersion();
 });
 
 function initializeSettings() {
@@ -411,4 +412,27 @@ function getCustomButtons() {
             dropdown.hasChangeListener = true;
         }
     });
+}
+
+async function checkManifestVersion() {
+    const manifest = chrome.runtime.getManifest();
+    const localVersion = manifest.version;
+
+    const versionDisplay = document.getElementById("versionmanifest");
+    versionDisplay.innerHTML = `<h4>You're on the lastest version ${localVersion}</h4>`;
+    const remoteManifestUrl = 'https://raw.githubusercontent.com/Eppich207/GoHelper/refs/heads/main/part1/manifest.json';
+    
+    try {
+        const response = await fetch(remoteManifestUrl);
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        
+        const remoteManifest = await response.json();
+        const remoteVersion = remoteManifest.version;
+        
+        if (remoteVersion !== localVersion) {
+            versionDisplay.innerHTML = `<h4 style="color: white;">Version: ${localVersion} (Update ${remoteVersion} available)</h4>`;
+            }
+    } catch (error) {
+        console.error('Error checking manifest version:', error);
+    }
 }

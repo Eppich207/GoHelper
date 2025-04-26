@@ -16,6 +16,7 @@
       <div class="sh-header-version" id="versionmanifest">
         <h4>Version:</h4>
       </div>
+
     </div>
 
     <div class="sh-main-content">
@@ -30,6 +31,10 @@
           <option value="en" language="english" class="activeLang">English</option>
           <option value="es" language="spanish">Español</option>
         </select>
+        
+        <button id="retrieveButton" class="sh-createButton sh-left-buttonbordermargin ST13" style="margin-top: 20px;">Refresh display</button>
+        <button id="deleteButton" class="sh-redButton sh-left-buttonbordermargin ST14">Clear all addin data</button>
+
         <div class="sh-file-input">
           <h5 style="width: 200px; margin-bottom: 8px;" class="ST3">File upload/download</h5>
           <div>
@@ -73,10 +78,6 @@
             <link rel="stylesheet" href="trello.css">
             <div id="board" class="board"></div>
             <button id="add-list">+ Add List</button>
-        </div>
-        <div class="sh-lower-right">
-          <button id="retrieveButton" class="sh-createButton ST13">Refresh display</button>
-          <button id="deleteButton" class="sh-redButton ST14">Clear all addin data</button>
         </div>
       </div>
     </div>
